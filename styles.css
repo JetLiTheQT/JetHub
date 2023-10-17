@@ -1,0 +1,57 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;    
+    padding: 20px;
+    background: url('background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.navigation {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.navigation a{
+    text-decoration: none;  
+    color: black;         
+}
+
+.navigation a:visited {
+    color: black;           
+}
+
+.navigation a.active {
+    color: blue;
+}
+
+.welcome {
+    text-align: center;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15%;
+}
+
+
+.welcome {
+    font-size: 60px;
+    overflow: hidden; 
+    white-space: nowrap; 
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: black;
+    }
+}
+.typing {
+    animation: typewriter 3s steps(40, end) 1s 1 normal both;
+    border-right: 0.15em solid black; /* Cursor */
+}
