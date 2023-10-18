@@ -1,6 +1,6 @@
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const db = getFirestore(app);
 
 // HTML Elements
 const addBookButton = document.querySelector('.add-new');
