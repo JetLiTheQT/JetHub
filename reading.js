@@ -1,6 +1,6 @@
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
@@ -89,16 +89,15 @@ function addBookToList(title, author) {
     closeModal(); // Close the modal after adding a book
 }
 
-
-// Fetch and display books from Firestore on page load
-function fetchBooksFromDb() {
-    db.collection('books').get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            const bookData = doc.data();
-            addBookToUI(bookData.title, bookData.author);
-        });
+async function fetchBooksFromDb() {
+    const booksCollection = collection(db, 'books');
+    const querySnapshot = await getDocs(booksCollection);
+    querySnapshot.forEach((doc) => {
+        const bookData = doc.data();
+        addBookToUI(bookData.title, bookData.author);
     });
 }
+
 
 // Add book to the UI (splitting this logic out so we can use it for both fetched books and newly added books)
 function addBookToUI(title, author) {
