@@ -59,12 +59,17 @@ function displayResults(books) {
         bookElement.innerHTML = `
             <h4>${book.title}</h4>
             <p>${book.author_name ? book.author_name[0] : 'Unknown Author'}</p>
-            <button onclick="addBookToList('${book.title}', '${book.author_name ? book.author_name[0] : 'Unknown Author'}')">Add to List</button>
+            <button class="add-to-list-button">Add to List</button>
         `;
+
+        bookElement.querySelector(".add-to-list-button").addEventListener('click', () => {
+            addBookToList(book.title, book.author_name ? book.author_name[0] : 'Unknown Author');
+        });
 
         searchResults.appendChild(bookElement);
     });
 }
+
 
 function addBookToList(title, author) {
     const bookData = { title, author };
