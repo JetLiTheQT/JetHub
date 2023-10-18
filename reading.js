@@ -5,9 +5,8 @@ const closeModalButton = modal.querySelector('.close');
 const bookSearchInput = modal.querySelector('#bookSearch');
 const searchResults = modal.querySelector('.searchResults');
 const readingListContainer = document.querySelector('.reading-list-container');
-document.addEventListener("DOMContentLoaded", function() {
-    const db = firebase.firestore();
-});
+const db = firebase.firestore();
+
 
 // Show the Modal
 addBookButton.addEventListener('click', () => {
@@ -30,7 +29,7 @@ bookSearchInput.addEventListener('input', (e) => {
 
 // Fetch books from Open Library API
 function fetchBooks(query) {
-    fetch(`http://openlibrary.org/search.json?q=${query}`)
+    fetch(`https://openlibrary.org/search.json?q=${query}`)
         .then(response => response.json())
         .then(data => displayResults(data.docs));
 }
