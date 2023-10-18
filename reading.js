@@ -1,10 +1,3 @@
-// HTML Elements
-const addBookButton = document.querySelector('.add-new');
-const modal = document.getElementById('addBookModal');
-const closeModalButton = modal.querySelector('.close');
-const bookSearchInput = modal.querySelector('#bookSearch');
-const searchResults = modal.querySelector('.searchResults');
-const readingListContainer = document.querySelector('.reading-list-container');
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
@@ -20,6 +13,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+// HTML Elements
+const addBookButton = document.querySelector('.add-new');
+const modal = document.getElementById('addBookModal');
+const closeModalButton = modal.querySelector('.close');
+const bookSearchInput = modal.querySelector('#bookSearch');
+const searchResults = modal.querySelector('.searchResults');
+const readingListContainer = document.querySelector('.reading-list-container');
+
 
 // Show the Modal
 addBookButton.addEventListener('click', () => {
