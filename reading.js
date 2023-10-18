@@ -5,6 +5,9 @@ const closeModalButton = modal.querySelector('.close');
 const bookSearchInput = modal.querySelector('#bookSearch');
 const searchResults = modal.querySelector('.searchResults');
 const readingListContainer = document.querySelector('.reading-list-container');
+document.addEventListener("DOMContentLoaded", function() {
+    const db = firebase.firestore();
+});
 
 // Show the Modal
 addBookButton.addEventListener('click', () => {
@@ -49,19 +52,55 @@ function displayResults(books) {
     });
 }
 
-// Add a selected book to the reading list
 function addBookToList(title, author) {
+    const bookData = { title, author };
+    
+    // Add the book to the Firestore database
+    db.collection('books').add(bookData).then((docRef) => {
+        console.log(`Book added with ID: ${docRef.id}`);
+
+        // Add the book to the UI
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('book-card');
+        bookCard.innerHTML = `
+            <h4>${title}</h4>
+            <p>${author}</p>
+        `;
+
+        readingListContainer.insertBefore(bookCard, addBookButton);
+    }).catch((error) => {
+        console.error("Error adding book: ", error);
+    });
+    
+    closeModal(); // Close the modal after adding a book
+}
+
+
+// Fetch and display books from Firestore on page load
+function fetchBooksFromDb() {
+    db.collection('books').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const bookData = doc.data();
+            addBookToUI(bookData.title, bookData.author);
+        });
+    });
+}
+
+// Add book to the UI (splitting this logic out so we can use it for both fetched books and newly added books)
+function addBookToUI(title, author) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
     bookCard.innerHTML = `
         <h4>${title}</h4>
         <p>${author}</p>
     `;
-
-    readingListContainer.insertBefore(bookCard, addBookButton); // Insert the new book card just before the add button
-
-    closeModal(); // Close the modal after adding a book
+    
+    readingListContainer.insertBefore(bookCard, addBookButton);
 }
+
+// Call the fetchBooksFromDb function when the script runs
+fetchBooksFromDb();
+
 
 // Close modal if clicking outside of it
 window.addEventListener('click', (e) => {
