@@ -7,11 +7,33 @@ document.addEventListener("DOMContentLoaded", function() {
         if (index < text.length) {
             welcomeElement.textContent += text.charAt(index);
             index++;
-            setTimeout(type, 100);  // This sets the typing speed. Adjust the 100 to type faster/slower.
+            setTimeout(type, 100);  
         } else {
-            welcomeElement.style.borderRight = 'none';  // Remove cursor after typing
+            welcomeElement.style.borderRight = 'none';  
         }
     }
 
-    type();  // Start the typewriter effect
+    type(); 
 });
+
+function fetchAndDisplayQuote() {
+    // Adding a unique timestamp to the URL to prevent caching
+    const url = 'https://api.allorigins.win/raw?url=https://zenquotes.io/api/random&' + new Date().getTime();
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const quote = data[0].q;
+        const author = data[0].a;
+        document.getElementById('quote-text').textContent = `"${quote}"`;
+        document.getElementById('quote-author').textContent = `- ${author}`;
+    })
+    .catch(error => {
+        console.error('Error fetching the quote:', error);
+    });
+}
+
+
+
+// Call the function when the page loads
+fetchAndDisplayQuote();
