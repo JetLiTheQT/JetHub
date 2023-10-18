@@ -71,11 +71,15 @@ function displayResults(books) {
 }
 
 
-function addBookToList(title, author) {
+async function addBookToList(title, author) {
     const bookData = { title, author };
-    
-    // Add the book to the Firestore database
-    db.collection('books').add(bookData).then((docRef) => {
+
+    // Reference to 'books' collection
+    const booksCollection = collection(db, 'books');
+
+    try {
+        // Add the book to the Firestore database
+        const docRef = await addDoc(booksCollection, bookData);
         console.log(`Book added with ID: ${docRef.id}`);
 
         // Add the book to the UI
@@ -87,11 +91,11 @@ function addBookToList(title, author) {
         `;
 
         readingListContainer.insertBefore(bookCard, addBookButton);
-    }).catch((error) => {
+        
+        closeModal(); // Close the modal after adding a book
+    } catch (error) {
         console.error("Error adding book: ", error);
-    });
-    
-    closeModal(); // Close the modal after adding a book
+    }
 }
 
 async function fetchBooksFromDb() {
