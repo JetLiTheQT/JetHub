@@ -5,8 +5,21 @@ const closeModalButton = modal.querySelector('.close');
 const bookSearchInput = modal.querySelector('#bookSearch');
 const searchResults = modal.querySelector('.searchResults');
 const readingListContainer = document.querySelector('.reading-list-container');
-const db = firebase.firestore();
+// Firebase Initialization
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
+const firebaseConfig = {
+    apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
+    authDomain: "jethub-7e600.firebaseapp.com",
+    projectId: "jethub-7e600",
+    storageBucket: "jethub-7e600.appspot.com",
+    messagingSenderId: "723758012207",
+    appId: "1:723758012207:web:40ea1ea84e9a2f460fb3da"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 // Show the Modal
 addBookButton.addEventListener('click', () => {
