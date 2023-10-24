@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function fetchAndDisplayQuote() {
     // Adding a unique timestamp to the URL to prevent caching
-    const url = 'https://zenquotes.io/api/random&' + new Date().getTime();
+    const url = 'https://api.allorigins.win/raw?url=https://zenquotes.io/api/random&' + new Date().getTime();
 
     fetch(url)
     .then(response => response.json())

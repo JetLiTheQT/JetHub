@@ -64,7 +64,7 @@ longBreakBtn.addEventListener("click", () => {
     setActiveBtn(longBreakBtn);
 });
 
-// playPauseBtn.addEventListener("click", startStopTimer);
+playPauseBtn.addEventListener("click", startStopTimer);
 
 resetBtn.addEventListener("click", () => {
     if (isRunning) {
