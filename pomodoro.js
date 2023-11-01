@@ -51,8 +51,8 @@ pomodoroBtn.addEventListener("click", () => {
 });
 
 shortBreakBtn.addEventListener("click", () => {
-    minutes = 5;
-    seconds = 0;
+    minutes = 0;
+    seconds = 2;
     displayTime();
     setActiveBtn(shortBreakBtn);
 });
