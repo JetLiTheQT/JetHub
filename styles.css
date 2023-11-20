@@ -205,7 +205,7 @@ body {
     border-top-right-radius: 10px;
 }
 
-
+*/
 .book-text-container {
     padding: 10px;
     text-align: center;
@@ -220,7 +220,7 @@ body {
 .book-text-container p { 
     color: #666;
     font-size: 0.9em;
-} */
+} 
 
 .book-card:hover {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
