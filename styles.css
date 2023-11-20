@@ -232,7 +232,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f0f0f0; /* Light grey background for contrast */
     border: 1px solid #ccc; /* Border for visibility */
     border-radius: 10px;
     cursor: pointer; /* Change cursor to indicate it's clickable */
