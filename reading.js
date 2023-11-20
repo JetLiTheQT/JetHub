@@ -53,7 +53,7 @@ bookSearchInput.addEventListener('input', (e) => {
 });
 
 let currentPage = 1;
-const resultsPerPage = 10; // Adjust as needed
+const resultsPerPage = 5; // Adjust as needed
 
 function fetchBooks(query, page = 1) {
     const startIndex = (page - 1) * resultsPerPage;
