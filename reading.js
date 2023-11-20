@@ -129,7 +129,7 @@ function addBookToUI(title, author, imageUrl = 'path/to/default/image.jpg') { //
 
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
-function addBookToUI(title, author) { 
+function openDetailModal(title, author) { 
     // Here, fetch more details from Firestore if necessary
     // For simplicity, I'll just display the title and author
     const bookDetailsDiv = document.getElementById('bookDetails');
