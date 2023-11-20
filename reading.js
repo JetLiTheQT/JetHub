@@ -112,13 +112,35 @@ async function fetchBooksFromDb() {
 function addBookToUI(title, author) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
+    bookCard.setAttribute('data-title', title); // Unique identifier
     bookCard.innerHTML = `
         <h4>${title}</h4>
         <p>${author}</p>
     `;
     
+    bookCard.addEventListener('click', function() {
+        openDetailModal(title);
+    });
+
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
+function openDetailModal(title) {
+    // Example: Fetching details from Firestore (assuming you have more details stored there)
+    const querySnapshot = getDocs(collection(db, 'books'));
+    querySnapshot.forEach((doc) => {
+        if(doc.data().title === title) {
+            const bookDetails = doc.data(); // Get the details
+            // Populate those details into the modal
+            document.getElementById('bookDetails').innerHTML = `
+                <h2>${bookDetails.title}</h2>
+                <p>Author: ${bookDetails.author}</p>
+                // Add more details here
+            `;
+        }
+    });
+    document.getElementById('bookDetailModal').style.display = 'block';
+}
+
 
 // Call the fetchBooksFromDb function when the script runs
 fetchBooksFromDb();
