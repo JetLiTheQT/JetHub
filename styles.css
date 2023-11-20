@@ -189,11 +189,12 @@ body {
     height: 220px;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* This ensures nothing goes outside the card's rounded corners */
+    overflow: hidden; /* Ensures nothing goes outside the card's rounded corners */
     background-color: white; /* Or any color you prefer */
     display: flex;
-    flex-direction: column; /* Stack image and text vertically */
-    align-items: center;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
 }
 
 /* Style for the image inside the card
@@ -209,7 +210,6 @@ body {
 .book-text-container {
     padding: 10px;
     text-align: center;
-    flex-grow: 1; 
 }
 
 .book-text-container h4 { 
