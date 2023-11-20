@@ -197,7 +197,7 @@ body {
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    text-align: center;
+    overflow: hidden;
     background-color: white;
 }
 .book-card h4 { /* Title */
@@ -211,11 +211,25 @@ body {
     margin-bottom: 10px;
 }
 
-.book-card img { /* Image */
+.book-image-container img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    height: 150px; /* Adjust as needed */
+    object-fit: cover; /* This will cover the area, can be adjusted to 'contain' if needed */
+}
+
+.book-text-container {
+    padding: 10px;
+    text-align: center;
+}
+
+.book-text-container h4 { /* Title */
+    margin-top: 0;
+    color: #333;
+}
+
+.book-text-container p { /* Author */
+    color: #666;
+    font-size: 0.9em;
 }
 .book-card:hover {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
