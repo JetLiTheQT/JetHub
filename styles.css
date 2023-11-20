@@ -267,3 +267,15 @@ body {
     color: #333; /* Darker color for the icon */
     font-size: 24px; /* Increase the size of the icon */
 }
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
+}

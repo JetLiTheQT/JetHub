@@ -52,16 +52,42 @@ bookSearchInput.addEventListener('input', (e) => {
     }
 });
 
-// Fetch books from Open Library API
-function fetchBooks(query) {
-    fetch(`https://openlibrary.org/search.json?q=${query}`)
+let currentPage = 1;
+const resultsPerPage = 10; // Adjust as needed
+
+function fetchBooks(query, page = 1) {
+    const startIndex = (page - 1) * resultsPerPage;
+
+    fetch(`https://openlibrary.org/search.json?q=${query}&page=${page}&limit=${resultsPerPage}`)
         .then(response => response.json())
         .then(data => displayResults(data.docs));
 }
 
+// Event listeners for pagination buttons
+document.getElementById('nextPage').addEventListener('click', () => {
+    currentPage++;
+    fetchBooks(bookSearchInput.value, currentPage);
+});
+
+document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        fetchBooks(bookSearchInput.value, currentPage);
+    }
+});
+
+bookSearchInput.addEventListener('input', (e) => {
+    if (e.target.value.length >= 3) {
+        currentPage = 1; // Reset to the first page for a new search
+        fetchBooks(e.target.value);
+    }
+});
+
+
 // Display book search results in the modal
 function displayResults(books) {
     searchResults.innerHTML = ''; // Clear previous results
+    document.getElementById('currentPage').innerText = currentPage;
 
     books.forEach(book => {
         const bookElement = document.createElement('div');
