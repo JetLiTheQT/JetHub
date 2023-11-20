@@ -31,8 +31,12 @@ addBookButton.addEventListener('click', () => {
 });
 
 // Close the Modal
+// For the addBookModal
 closeModalButton.addEventListener('click', closeModal);
-closeModalButton.addEventListener('click', closeDetailModal);
+
+const closeDetailModalButton = modal2.querySelector('.close');
+closeDetailModalButton.addEventListener('click', closeDetailModal);
+
 
 function closeModal() {
     modal.style.display = 'none';
@@ -148,6 +152,8 @@ fetchBooksFromDb();
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
         closeModal();
+    }
+    if (e.target === modal2) {
         closeDetailModal();
     }
 });
