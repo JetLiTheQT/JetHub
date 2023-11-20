@@ -268,3 +268,29 @@ body {
     font-size: 24px; /* Increase the size of the icon */
 }
 
+#pagination {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 10px; /* Space between search results and pagination */
+}
+
+#pagination button {
+    background-color: #007bff; /* Example blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 15px; /* Top/bottom and left/right padding */
+    margin-left: 5px; /* Space between buttons */
+    cursor: pointer; /* Cursor changes to pointer to indicate clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#pagination button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#pagination span {
+    margin-left: 10px; /* Space before the page number */
+}
