@@ -119,6 +119,7 @@ function addBookToUI(title, author) {
     bookCard.classList.add('book-card');
     bookCard.setAttribute('data-title', title); // Unique identifier
     bookCard.innerHTML = `
+        <img src="${imageUrl}" alt="Book Cover"> 
         <h4>${title}</h4>
         <p>${author}</p>
     `;
@@ -129,7 +130,7 @@ function addBookToUI(title, author) {
 
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
-function openDetailModal(title, author) {
+function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add imageUrl parameter
     // Here, fetch more details from Firestore if necessary
     // For simplicity, I'll just display the title and author
     const bookDetailsDiv = document.getElementById('bookDetails');

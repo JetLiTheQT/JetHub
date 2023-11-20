@@ -194,8 +194,29 @@ body {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     transition: all 0.3s ease;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    background-color: white;
+}
+.book-card h4 { /* Title */
+    margin-top: 0;
+    color: #333;
 }
 
+.book-card p { /* Author */
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.book-card img { /* Image */
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
 .book-card:hover {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
