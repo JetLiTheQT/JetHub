@@ -37,7 +37,7 @@ function closeModal() {
 }
 
 function closeDetailModal() {
-    document.getElementById('bookDetailModal').style.display = 'none';
+    modal.style.display = 'none';
 }
 // Fetch Books when typing
 bookSearchInput.addEventListener('input', (e) => {
@@ -146,5 +146,6 @@ fetchBooksFromDb();
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
         closeModal();
+        closeDetailModal();
     }
 });
