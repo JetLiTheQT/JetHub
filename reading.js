@@ -83,12 +83,7 @@ async function addBookToList(title, author) {
         console.log(`Book added with ID: ${docRef.id}`);
 
         // Add the book to the UI
-        const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card');
-        bookCard.innerHTML = `
-            <h4>${title}</h4>
-            <p>${author}</p>
-        `;
+        addBookToUI(title, author);
 
         readingListContainer.insertBefore(bookCard, addBookButton);
         
@@ -119,7 +114,7 @@ function addBookToUI(title, author) {
     `;
     
     bookCard.addEventListener('click', function() {
-        openDetailModal(title);
+        openDetailModal(title, author);
     });
 
     readingListContainer.insertBefore(bookCard, addBookButton);
@@ -141,7 +136,9 @@ function openDetailModal(title) {
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
-
+function closeDetailModal() {
+    document.getElementById('bookDetailModal').style.display = 'none';
+}
 // Call the fetchBooksFromDb function when the script runs
 fetchBooksFromDb();
 
