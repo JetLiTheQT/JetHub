@@ -114,12 +114,11 @@ async function fetchBooksFromDb() {
 
 
 // Add book to the UI (splitting this logic out so we can use it for both fetched books and newly added books)
-function addBookToUI(title, author) {
+function addBookToUI(title, author, imageUrl = 'path/to/default/image.jpg') { // Add imageUrl parameter
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
-    bookCard.setAttribute('data-title', title); // Unique identifier
     bookCard.innerHTML = `
-        <img src="${imageUrl}" alt="Book Cover"> 
+        <img src="${imageUrl}" alt="Book Cover"> <!-- Book image -->
         <h4>${title}</h4>
         <p>${author}</p>
     `;
@@ -130,7 +129,7 @@ function addBookToUI(title, author) {
 
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
-function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add imageUrl parameter
+function addBookToUI(title, author) { 
     // Here, fetch more details from Firestore if necessary
     // For simplicity, I'll just display the title and author
     const bookDetailsDiv = document.getElementById('bookDetails');
