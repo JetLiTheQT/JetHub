@@ -114,7 +114,7 @@ async function fetchBooksFromDb() {
 
 
 // Add book to the UI (splitting this logic out so we can use it for both fetched books and newly added books)
-function addBookToUI(title, author, imageUrl = 'path/to/default/image.jpg') { // Add imageUrl parameter
+function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add imageUrl parameter
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
     bookCard.innerHTML = `
