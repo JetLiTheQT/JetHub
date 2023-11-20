@@ -119,20 +119,17 @@ function addBookToUI(title, author) {
 
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
-function openDetailModal(title) {
-    // Example: Fetching details from Firestore (assuming you have more details stored there)
-    const querySnapshot = getDocs(collection(db, 'books'));
-    querySnapshot.forEach((doc) => {
-        if(doc.data().title === title) {
-            const bookDetails = doc.data(); // Get the details
-            // Populate those details into the modal
-            document.getElementById('bookDetails').innerHTML = `
-                <h2>${bookDetails.title}</h2>
-                <p>Author: ${bookDetails.author}</p>
-                // Add more details here
-            `;
-        }
-    });
+function openDetailModal(title, author) {
+    // Here, fetch more details from Firestore if necessary
+    // For simplicity, I'll just display the title and author
+    const bookDetailsDiv = document.getElementById('bookDetails');
+    bookDetailsDiv.innerHTML = `
+        <h2>${title}</h2>
+        <p>Author: ${author}</p>
+        // Add more details or fetched content here
+    `;
+
+    // Display the modal
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
