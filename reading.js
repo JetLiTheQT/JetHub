@@ -17,6 +17,8 @@ const db = getFirestore(app);
 // HTML Elements
 const addBookButton = document.querySelector('.add-new');
 const modal = document.getElementById('addBookModal');
+const modal2 = document.getElementById('bookDetailModal');
+
 const closeModalButton = modal.querySelector('.close');
 const bookSearchInput = modal.querySelector('#bookSearch');
 const searchResults = modal.querySelector('.searchResults');
@@ -37,7 +39,7 @@ function closeModal() {
 }
 
 function closeDetailModal() {
-    modal.style.display = 'none';
+    modal2.style.display = 'none';
 }
 // Fetch Books when typing
 bookSearchInput.addEventListener('input', (e) => {
