@@ -30,11 +30,15 @@ addBookButton.addEventListener('click', () => {
 
 // Close the Modal
 closeModalButton.addEventListener('click', closeModal);
+closeModalButton.addEventListener('click', closeDetailModal);
 
 function closeModal() {
     modal.style.display = 'none';
 }
 
+function closeDetailModal() {
+    document.getElementById('bookDetailModal').style.display = 'none';
+}
 // Fetch Books when typing
 bookSearchInput.addEventListener('input', (e) => {
     if (e.target.value.length >= 3) {
@@ -133,9 +137,7 @@ function openDetailModal(title, author) {
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
-function closeDetailModal() {
-    document.getElementById('bookDetailModal').style.display = 'none';
-}
+
 // Call the fetchBooksFromDb function when the script runs
 fetchBooksFromDb();
 
