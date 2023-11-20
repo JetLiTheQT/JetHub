@@ -229,8 +229,13 @@ body {
     display: none;
 }
 .add-new {
-    font-size: 24px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Light grey background for contrast */
+    border: 1px solid #ccc; /* Border for visibility */
+    border-radius: 10px;
+    cursor: pointer; /* Change cursor to indicate it's clickable */
 }
 
 .modal {
@@ -259,6 +264,7 @@ body {
     cursor: pointer;
     font-size: 20px;
 }
-.fas fa-plus{
-    color: black;
+.add-new i {
+    color: #333; /* Darker color for the icon */
+    font-size: 24px; /* Increase the size of the icon */
 }
