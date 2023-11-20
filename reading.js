@@ -118,9 +118,6 @@ function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add image
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
     bookCard.innerHTML = `
-    <div class="book-image-container">
-        <img src="${imageUrl}" alt="Book Cover">
-    </div>
     <div class="book-text-container">
         <h4>${title}</h4>
         <p>${author}</p>
