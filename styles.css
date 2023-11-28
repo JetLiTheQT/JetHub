@@ -1,3 +1,7 @@
+body::before {
+    content: url('background.jpg'), url('background2.jpg');
+    display: none;
+}
 body {
     font-family: 'Nunito Sans', sans-serif;    
     padding: 20px;
