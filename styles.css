@@ -10,7 +10,7 @@ body {
 .navigation {
     font-size: 25px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 35px;
     margin-bottom: 20px;
     font-family: 'Nunito Sans', sans-serif;

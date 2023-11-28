@@ -32,6 +32,28 @@ function fetchAndDisplayQuote() {
         console.error('Error fetching the quote:', error);
     });
 }
+// Place this script at the end of your JavaScript file or within a <script> tag in your HTML
+document.getElementById('settingsButton').addEventListener('click', () => {
+    document.getElementById('settingsModal').style.display = 'block';
+});
+
+function closeSettingsModal() {
+    document.getElementById('settingsModal').style.display = 'none';
+}
+
+function changeBackground() {
+    const selectedBackground = document.getElementById('backgroundSelector').value;
+    document.body.style.backgroundImage = `url('${selectedBackground}')`;
+    localStorage.setItem('backgroundImage', selectedBackground);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedBackground = localStorage.getItem('backgroundImage');
+    if (savedBackground) {
+        document.body.style.backgroundImage = `url('${savedBackground}')`;
+    }
+});
+
 
 
 
