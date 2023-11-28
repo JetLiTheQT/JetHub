@@ -106,28 +106,19 @@ function displayResults(books) {
     });
 }
 
-
 async function addBookToList(title, author) {
     const bookData = { title, author };
 
-    // Reference to 'books' collection
-    const booksCollection = collection(db, 'books');
-
     try {
-        // Add the book to the Firestore database
-        const docRef = await addDoc(booksCollection, bookData);
+        const docRef = await addDoc(collection(db, 'books'), bookData);
         console.log(`Book added with ID: ${docRef.id}`);
 
-        // Add the book to the UI
-        addBookToUI(title, author);
-
-        readingListContainer.insertBefore(bookCard, addBookButton);
-        
-        closeModal(); // Close the modal after adding a book
+        addBookToUI(title, author, docRef.id);
     } catch (error) {
         console.error("Error adding book: ", error);
     }
 }
+
 
 async function fetchBooksFromDb() {
     const booksCollection = collection(db, 'books');
@@ -157,6 +148,7 @@ function addBookToUI(title, author, bookId) {
 }
 
 
+
 let currentBook = {}; 
 
 async function saveBookDetails(bookId) {
@@ -166,7 +158,7 @@ async function saveBookDetails(bookId) {
     const finished = document.getElementById('finishedCheckbox').checked;
 
     const bookData = { title, author, notes, rating, finished };
-    
+
     try {
         await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
         console.log("Book details saved");
@@ -175,16 +167,14 @@ async function saveBookDetails(bookId) {
     }
 }
 
+
 async function loadBookDetails(bookId) {
     try {
         const docRef = doc(db, 'books', bookId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            const bookData = docSnap.data();
-            document.getElementById('bookNotes').value = bookData.notes || "";
-            document.getElementById('bookRating').value = bookData.rating || "1";
-            document.getElementById('finishedCheckbox').checked = bookData.finished || false;
+            // ... existing code ...
         } else {
             console.log("No such book!");
         }
@@ -193,27 +183,10 @@ async function loadBookDetails(bookId) {
     }
 }
 
-function openDetailModal(title, author, bookId) {
-    const bookDetailsDiv = document.getElementById('bookDetails');
-    bookDetailsDiv.innerHTML = `
-        <h2>${title}</h2>
-        <p>Author: ${author}</p>
-        <label><input type="checkbox" id="finishedCheckbox"> Finished</label>
-        <h4>Notes:</h4>
-        <textarea id="bookNotes" rows="4" cols="50"></textarea>
-        <h4>Rating:</h4>
-        <select id="bookRating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <button id="saveButtonID">Save</button>
-    `;
 
-    // Load existing details if they exist
+function openDetailModal(title, author, bookId) {
     currentBook = { title, author, bookId };
+
     loadBookDetails(bookId);
     document.querySelector('#saveButtonID').addEventListener('click', () => saveBookDetails(bookId));
     document.getElementById('bookDetailModal').style.display = 'block';
