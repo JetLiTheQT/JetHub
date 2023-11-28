@@ -105,7 +105,6 @@ function displayResults(books) {
         searchResults.appendChild(bookElement);
     });
 }
-
 async function addBookToList(title, author) {
     const bookData = { title, author };
 
@@ -120,14 +119,17 @@ async function addBookToList(title, author) {
 }
 
 
+
 async function fetchBooksFromDb() {
     const booksCollection = collection(db, 'books');
     const querySnapshot = await getDocs(booksCollection);
     querySnapshot.forEach((doc) => {
         const bookData = doc.data();
-        addBookToUI(bookData.title, bookData.author);
+        const bookId = doc.id; // Capture the Firestore document ID
+        addBookToUI(bookData.title, bookData.author, bookId);
     });
 }
+
 
 
 // Add book to the UI (splitting this logic out so we can use it for both fetched books and newly added books)
@@ -135,6 +137,7 @@ function addBookToUI(title, author, bookId) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
     bookCard.dataset.bookId = bookId; // Store the unique identifier
+    
     bookCard.innerHTML = `
         <div class="book-text-container">
             <h4>${title}</h4>
@@ -142,8 +145,11 @@ function addBookToUI(title, author, bookId) {
         </div>
     `;
     bookCard.addEventListener('click', function() {
-        openDetailModal(title, author, bookId);
+        const id = this.dataset.bookId;
+        openDetailModal(title, author, id);
     });
+    
+    
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
 
