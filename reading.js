@@ -157,6 +157,7 @@ function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add image
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
 
+let currentBook = {}; 
 
 async function loadBookDetails(title, author) {
     const bookId = title + "-" + author;
@@ -198,12 +199,15 @@ function openDetailModal(title, author) {
     `;
 
     // Load existing details if they exist
+    currentBook = { title, author };
+
     loadBookDetails(title, author);
-    document.querySelector('#saveButtonID').addEventListener('click', saveBookDetails(title, author));
+    document.querySelector('#saveButtonID').addEventListener('click', saveBookDetails);
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
-async function saveBookDetails(title, author) {
+async function saveBookDetails() {
+    const { title, author } = currentBook;
     const notes = document.getElementById('bookNotes').value;
     const rating = document.getElementById('bookRating').value;
     const finished = document.getElementById('finishedCheckbox').checked;
