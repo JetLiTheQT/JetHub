@@ -1,21 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const savedBackground = localStorage.getItem('backgroundImage');
     if (savedBackground) {
-        const preloadStyle = document.getElementById('preloadStyle');
-        preloadStyle.textContent = `
-            body::before {
-                content: '';
-                display: block;
-                position: fixed;
-                top: -100%;
-                width: 1px;
-                height: 1px;
-                background-image: url('${savedBackground}');
-            }
-        `;
-        document.body.style.backgroundImage = `url('${savedBackground}')`;
+        const img = new Image();
+        img.onload = function() {
+            document.body.style.backgroundImage = `url('${savedBackground}')`;
+        };
+        img.src = savedBackground;
     }
 });
+
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
