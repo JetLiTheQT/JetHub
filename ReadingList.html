@@ -8,11 +8,11 @@
     <script>
         function setInitialBackground() {
             const savedBackground = localStorage.getItem('backgroundImage');
-            const defaultBackground = 'path/to/default-background.jpg'; // Your default background
+            const defaultBackground = 'background.jpg'; 
             const background = savedBackground || defaultBackground;
             document.body.style.background = `url('${background}') no-repeat center center fixed`;
         }
-    </script>v
+    </script>
     <script type="module" src="reading.js" defer></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
