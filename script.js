@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     type(); 
 });
-document.addEventListener('DOMContentLoaded', () => {
-    const savedBackground = localStorage.getItem('backgroundImage');
-    if (savedBackground) {
-        const img = new Image();
-        img.onload = function() {
-            document.body.style.backgroundImage = `url('${savedBackground}')`;
-        };
-        img.src = savedBackground;
-    }
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     const savedBackground = localStorage.getItem('backgroundImage');
+//     if (savedBackground) {
+//         const img = new Image();
+//         img.onload = function() {
+//             document.body.style.backgroundImage = `url('${savedBackground}')`;
+//         };
+//         img.src = savedBackground;
+//     }
+// });
 
 
 

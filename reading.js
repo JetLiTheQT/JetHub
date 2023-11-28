@@ -1,13 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const savedBackground = localStorage.getItem('backgroundImage');
-    if (savedBackground) {
-        const img = new Image();
-        img.onload = function() {
-            document.body.style.backgroundImage = `url('${savedBackground}')`;
-        };
-        img.src = savedBackground;
-    }
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     const savedBackground = localStorage.getItem('backgroundImage');
+//     if (savedBackground) {
+//         const img = new Image();
+//         img.onload = function() {
+//             document.body.style.backgroundImage = `url('${savedBackground}')`;
+//         };
+//         img.src = savedBackground;
+//     }
+// });
 
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
