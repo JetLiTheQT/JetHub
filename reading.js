@@ -1,14 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const savedBackground = localStorage.getItem('backgroundImage');
-//     if (savedBackground) {
-//         const img = new Image();
-//         img.onload = function() {
-//             document.body.style.backgroundImage = `url('${savedBackground}')`;
-//         };
-//         img.src = savedBackground;
-//     }
-// });
-
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
@@ -167,19 +156,69 @@ function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add image
 
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
+async function saveBookDetails(title, author) {
+    const notes = document.getElementById('bookNotes').value;
+    const rating = document.getElementById('bookRating').value;
+    const finished = document.getElementById('finishedCheckbox').checked;
+
+    const bookData = { title, author, notes, rating, finished };
+
+    // Use a unique identifier for the book, e.g., title and author combined
+    const bookId = title + "-" + author;
+
+    try {
+        await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
+        console.log("Book details saved");
+    } catch (error) {
+        console.error("Error saving book details: ", error);
+    }
+}
+
+async function loadBookDetails(title, author) {
+    const bookId = title + "-" + author;
+
+    try {
+        const docRef = doc(db, 'books', bookId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const bookData = docSnap.data();
+            document.getElementById('bookNotes').value = bookData.notes || "";
+            document.getElementById('bookRating').value = bookData.rating || "1";
+            document.getElementById('finishedCheckbox').checked = bookData.finished || false;
+        } else {
+            console.log("No such book!");
+        }
+    } catch (error) {
+        console.error("Error loading book details: ", error);
+    }
+}
+
 function openDetailModal(title, author) { 
-    // Here, fetch more details from Firestore if necessary
-    // For simplicity, I'll just display the title and author
     const bookDetailsDiv = document.getElementById('bookDetails');
     bookDetailsDiv.innerHTML = `
         <h2>${title}</h2>
         <p>Author: ${author}</p>
-        // Add more details or fetched content here
+        <label><input type="checkbox" id="finishedCheckbox"> Finished</label>
+        <h4>Notes:</h4>
+        <textarea id="bookNotes" rows="4" cols="50"></textarea>
+        <h4>Rating:</h4>
+        <select id="bookRating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button onclick="saveBookDetails('${title}', '${author}')">Save</button>
     `;
 
-    // Display the modal
+    // Load existing details if they exist
+    loadBookDetails(title, author);
+
     document.getElementById('bookDetailModal').style.display = 'block';
 }
+
 
 
 // Call the fetchBooksFromDb function when the script runs
