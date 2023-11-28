@@ -7,10 +7,8 @@
     <!-- <link rel="preload" href="background.jpg" as="image"> -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const savedBackground = localStorage.getItem('backgroundImage');
-            if (savedBackground) {
-                document.write(`<style>body { background: url('${savedBackground}') no-repeat center center fixed; }</style>`);
-            }
+            const savedBackground = localStorage.getItem('backgroundImage') || 'background.jpg';
+            document.write(`<style>body { background: url('${savedBackground}') no-repeat center center fixed; }</style>`);
         });
     </script>
     <link rel="stylesheet" href="styles.css">
