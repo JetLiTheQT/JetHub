@@ -140,28 +140,42 @@ async function fetchBooksFromDb() {
 
 
 // Add book to the UI (splitting this logic out so we can use it for both fetched books and newly added books)
-function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add imageUrl parameter
+function addBookToUI(title, author, bookId) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
+    bookCard.dataset.bookId = bookId; // Store the unique identifier
     bookCard.innerHTML = `
-    <div class="book-text-container">
-        <h4>${title}</h4>
-        <p>${author}</p>
-    </div>
+        <div class="book-text-container">
+            <h4>${title}</h4>
+            <p>${author}</p>
+        </div>
     `;
-    
     bookCard.addEventListener('click', function() {
-        openDetailModal(title, author);
+        openDetailModal(title, author, bookId);
     });
-
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
 
+
 let currentBook = {}; 
 
-async function loadBookDetails(title, author) {
-    const bookId = title + "-" + author;
+async function saveBookDetails(bookId) {
+    const { title, author } = currentBook;
+    const notes = document.getElementById('bookNotes').value;
+    const rating = document.getElementById('bookRating').value;
+    const finished = document.getElementById('finishedCheckbox').checked;
 
+    const bookData = { title, author, notes, rating, finished };
+    
+    try {
+        await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
+        console.log("Book details saved");
+    } catch (error) {
+        console.error("Error saving book details: ", error);
+    }
+}
+
+async function loadBookDetails(bookId) {
     try {
         const docRef = doc(db, 'books', bookId);
         const docSnap = await getDoc(docRef);
@@ -179,7 +193,7 @@ async function loadBookDetails(title, author) {
     }
 }
 
-function openDetailModal(title, author) { 
+function openDetailModal(title, author, bookId) {
     const bookDetailsDiv = document.getElementById('bookDetails');
     bookDetailsDiv.innerHTML = `
         <h2>${title}</h2>
@@ -199,31 +213,14 @@ function openDetailModal(title, author) {
     `;
 
     // Load existing details if they exist
-    currentBook = { title, author };
-
-    loadBookDetails(title, author);
-    document.querySelector('#saveButtonID').addEventListener('click', saveBookDetails);
+    currentBook = { title, author, bookId };
+    loadBookDetails(bookId);
+    document.querySelector('#saveButtonID').addEventListener('click', () => saveBookDetails(bookId));
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
-async function saveBookDetails() {
-    const { title, author } = currentBook;
-    const notes = document.getElementById('bookNotes').value;
-    const rating = document.getElementById('bookRating').value;
-    const finished = document.getElementById('finishedCheckbox').checked;
 
-    const bookData = { title, author, notes, rating, finished };
 
-    // Use a unique identifier for the book, e.g., title and author combined
-    const bookId = title + "-" + author;
-
-    try {
-        await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
-        console.log("Book details saved");
-    } catch (error) {
-        console.error("Error saving book details: ", error);
-    }
-}
 
 // Call the fetchBooksFromDb function when the script runs
 fetchBooksFromDb();
