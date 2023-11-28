@@ -195,14 +195,39 @@ async function loadBookDetails(bookId) {
 
 
 function openDetailModal(title, author, bookId) {
-    console.log("Opening detail modal with bookId:", bookId); // Log to check bookId
+    const bookDetailsDiv = document.getElementById('bookDetails');
+    bookDetailsDiv.innerHTML = `
+        <h2>${title}</h2>
+        <p>Author: ${author}</p>
+        <label><input type="checkbox" id="finishedCheckbox"> Finished</label>
+        <h4>Notes:</h4>
+        <textarea id="bookNotes" rows="4" cols="50"></textarea>
+        <h4>Rating:</h4>
+        <select id="bookRating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button id="saveButtonID">Save</button>
+    `;
 
+    // Load existing details if they exist
     currentBook = { title, author, bookId };
-
     loadBookDetails(bookId);
-    document.querySelector('#saveButtonID').addEventListener('click', () => saveBookDetails(bookId));
+
+    // Attach the event listener after the modal content is generated
+    const saveButton = document.getElementById('saveButtonID');
+    if (saveButton) {
+        saveButton.addEventListener('click', () => saveBookDetails(bookId));
+    } else {
+        console.error("Save button not found in the modal.");
+    }
+
     document.getElementById('bookDetailModal').style.display = 'block';
 }
+
 
 
 
