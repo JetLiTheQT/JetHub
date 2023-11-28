@@ -1,6 +1,6 @@
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
@@ -156,23 +156,7 @@ function addBookToUI(title, author, imageUrl = 'defaultbook.jpg') { // Add image
 
     readingListContainer.insertBefore(bookCard, addBookButton);
 }
-async function saveBookDetails(title, author) {
-    const notes = document.getElementById('bookNotes').value;
-    const rating = document.getElementById('bookRating').value;
-    const finished = document.getElementById('finishedCheckbox').checked;
 
-    const bookData = { title, author, notes, rating, finished };
-
-    // Use a unique identifier for the book, e.g., title and author combined
-    const bookId = title + "-" + author;
-
-    try {
-        await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
-        console.log("Book details saved");
-    } catch (error) {
-        console.error("Error saving book details: ", error);
-    }
-}
 
 async function loadBookDetails(title, author) {
     const bookId = title + "-" + author;
@@ -210,16 +194,32 @@ function openDetailModal(title, author) {
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <button onclick="saveBookDetails('${title}', '${author}')">Save</button>
+        <button id="saveButtonID">Save</button>
     `;
 
     // Load existing details if they exist
     loadBookDetails(title, author);
-
+    document.querySelector('#saveButtonID').addEventListener('click', saveBookDetails(title, author));
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
+async function saveBookDetails(title, author) {
+    const notes = document.getElementById('bookNotes').value;
+    const rating = document.getElementById('bookRating').value;
+    const finished = document.getElementById('finishedCheckbox').checked;
 
+    const bookData = { title, author, notes, rating, finished };
+
+    // Use a unique identifier for the book, e.g., title and author combined
+    const bookId = title + "-" + author;
+
+    try {
+        await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
+        console.log("Book details saved");
+    } catch (error) {
+        console.error("Error saving book details: ", error);
+    }
+}
 
 // Call the fetchBooksFromDb function when the script runs
 fetchBooksFromDb();
