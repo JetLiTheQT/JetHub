@@ -152,6 +152,8 @@ function addBookToUI(title, author, bookId) {
 let currentBook = {}; 
 
 async function saveBookDetails(bookId) {
+    console.log("Saving book details for bookId:", bookId); // Log to check bookId
+
     const { title, author } = currentBook;
     const notes = document.getElementById('bookNotes').value;
     const rating = document.getElementById('bookRating').value;
@@ -169,6 +171,8 @@ async function saveBookDetails(bookId) {
 
 
 async function loadBookDetails(bookId) {
+    console.log("Loading book details for bookId:", bookId); // Log to check bookId
+
     try {
         const docRef = doc(db, 'books', bookId);
         const docSnap = await getDoc(docRef);
@@ -185,6 +189,8 @@ async function loadBookDetails(bookId) {
 
 
 function openDetailModal(title, author, bookId) {
+    console.log("Opening detail modal with bookId:", bookId); // Log to check bookId
+
     currentBook = { title, author, bookId };
 
     loadBookDetails(bookId);
