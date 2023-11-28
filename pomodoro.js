@@ -1,12 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const savedBackground = localStorage.getItem('backgroundImage');
     if (savedBackground) {
-        const preloadLink = document.createElement('link');
-        preloadLink.rel = 'preload';
-        preloadLink.href = savedBackground;
-        preloadLink.as = 'image';
-
-        document.head.appendChild(preloadLink);
+        const preloadStyle = document.getElementById('preloadStyle');
+        preloadStyle.textContent = `
+            body::before {
+                content: '';
+                display: block;
+                position: fixed;
+                top: -100%;
+                width: 1px;
+                height: 1px;
+                background-image: url('${savedBackground}');
+            }
+        `;
         document.body.style.backgroundImage = `url('${savedBackground}')`;
     }
 });
