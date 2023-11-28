@@ -10,7 +10,7 @@ body {
 .navigation {
     font-size: 25px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 35px;
     margin-bottom: 20px;
     font-family: 'Nunito Sans', sans-serif;
@@ -27,7 +27,9 @@ body {
 .navigation a.active {
     color: blue;
 }
-
+#settingsButton {
+    margin-left: auto; /* Pushes the button to the right */
+}
 .welcome {
     text-align: center;
     font-size: 60px;

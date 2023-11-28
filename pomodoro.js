@@ -1,4 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const savedBackground = localStorage.getItem('backgroundImage');
+    if (savedBackground) {
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.href = savedBackground;
+        preloadLink.as = 'image';
 
+        document.head.appendChild(preloadLink);
+        document.body.style.backgroundImage = `url('${savedBackground}')`;
+    }
+});
 
 // Create variables pulled from their ID's
 const timeElement = document.getElementById("time");

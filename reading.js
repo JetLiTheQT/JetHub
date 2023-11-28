@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const savedBackground = localStorage.getItem('backgroundImage');
+    if (savedBackground) {
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.href = savedBackground;
+        preloadLink.as = 'image';
+
+        document.head.appendChild(preloadLink);
+        document.body.style.backgroundImage = `url('${savedBackground}')`;
+    }
+});
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";

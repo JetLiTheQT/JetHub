@@ -15,6 +15,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     type(); 
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const savedBackground = localStorage.getItem('backgroundImage');
+    if (savedBackground) {
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.href = savedBackground;
+        preloadLink.as = 'image';
+
+        document.head.appendChild(preloadLink);
+        document.body.style.backgroundImage = `url('${savedBackground}')`;
+    }
+});
 
 function fetchAndDisplayQuote() {
     // Adding a unique timestamp to the URL to prevent caching
