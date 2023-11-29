@@ -300,3 +300,11 @@ body {
 #pagination span {
     margin-left: 10px; /* Space before the page number */
 }
+.fa-star {
+    cursor: pointer;
+    color: gray;
+}
+
+.fa-star.checked {
+    color: yellow;
+}

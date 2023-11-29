@@ -162,7 +162,7 @@ async function saveBookDetails(bookId) {
 
     const { title, author } = currentBook;
     const notes = document.getElementById('bookNotes').value;
-    const rating = document.getElementById('bookRating').value;
+    const rating = getRatingValue(); 
     const finished = document.getElementById('finishedCheckbox').checked;
 
     const bookData = { title, author, notes, rating, finished };
@@ -174,7 +174,10 @@ async function saveBookDetails(bookId) {
         console.error("Error saving book details: ", error);
     }
 }
-
+function getRatingValue() {
+    const checkedStars = document.querySelectorAll('#starRating .fa-star.checked').length;
+    return checkedStars;
+}
 
 async function loadBookDetails(bookId) {
     console.log("Loading book details for bookId:", bookId); // Log to check bookId
@@ -229,13 +232,14 @@ function openDetailModal(title, author, bookId) {
         <p>${author}</p>
         <label><input type="checkbox" id="finishedCheckbox"> Finished</label>
         <h4>Rating:</h4>
-        <select id="bookRating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+        <div id="starRating">
+            <i class="far fa-star" data-value="1"></i>
+            <i class="far fa-star" data-value="2"></i>
+            <i class="far fa-star" data-value="3"></i>
+            <i class="far fa-star" data-value="4"></i>
+            <i class="far fa-star" data-value="5"></i>
+        </div>
+    
         <h4>Notes:</h4>
         <textarea id="bookNotes" rows="4" cols="50"></textarea>
         <button id="saveButtonID">Save</button>
@@ -258,6 +262,30 @@ function openDetailModal(title, author, bookId) {
 }
 
 
+document.querySelectorAll('#starRating .fa-star').forEach(star => {
+    star.addEventListener('click', onStarClick);
+});
+
+function onStarClick(e) {
+    const ratingValue = parseInt(e.target.dataset.value);
+    setRating(ratingValue);
+}
+
+function setRating(value) {
+    document.querySelectorAll('#starRating .fa-star').forEach(star => {
+        const starValue = parseInt(star.dataset.value);
+        if (starValue <= value) {
+            star.classList.remove('far');
+            star.classList.add('fas', 'checked');
+        } else {
+            star.classList.remove('fas', 'checked');
+            star.classList.add('far');
+        }
+    });
+
+    // Update the rating value somewhere if needed
+    console.log("Selected Rating:", value);
+}
 
 
 
