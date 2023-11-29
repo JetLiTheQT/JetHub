@@ -303,6 +303,7 @@ window.closeSettingsModal = function() {
 window.changeBackground = function(newBackground) {
     document.body.style.backgroundImage = `url('${newBackground}')`;
     localStorage.setItem('backgroundImage', newBackground);
+    document.body.style.backgroundSize = 'cover'; // Set background size to cover
     closeSettingsModal(); // Close the modal after changing the background
 }
 
