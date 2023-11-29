@@ -226,10 +226,8 @@ function openDetailModal(title, author, bookId) {
     const bookDetailsDiv = document.getElementById('bookDetails');
     bookDetailsDiv.innerHTML = `
         <h2>${title}</h2>
-        <p>Author: ${author}</p>
+        <p>${author}</p>
         <label><input type="checkbox" id="finishedCheckbox"> Finished</label>
-        <h4>Notes:</h4>
-        <textarea id="bookNotes" rows="4" cols="50"></textarea>
         <h4>Rating:</h4>
         <select id="bookRating">
             <option value="1">1</option>
@@ -238,6 +236,8 @@ function openDetailModal(title, author, bookId) {
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
+        <h4>Notes:</h4>
+        <textarea id="bookNotes" rows="4" cols="50"></textarea>
         <button id="saveButtonID">Save</button>
         <button id="deleteButtonID">Delete</button>
     `;
