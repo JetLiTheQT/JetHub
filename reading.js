@@ -1,6 +1,6 @@
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc, doc, setDoc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
@@ -203,6 +203,23 @@ async function loadBookDetails(bookId) {
     }
 }
 
+async function deleteBook(bookId) {
+    try {
+        await deleteDoc(doc(db, 'books', bookId));
+        console.log("Book deleted");
+
+        // Remove the book card from the UI
+        const bookCard = document.querySelector(`[data-book-id="${bookId}"]`);
+        if (bookCard) {
+            bookCard.remove();
+        }
+
+        // Close the modal
+        closeDetailModal();
+    } catch (error) {
+        console.error("Error deleting book: ", error);
+    }
+}
 
 
 function openDetailModal(title, author, bookId) {
@@ -222,22 +239,24 @@ function openDetailModal(title, author, bookId) {
             <option value="5">5</option>
         </select>
         <button id="saveButtonID">Save</button>
+        <button id="deleteButtonID">Delete</button>
     `;
 
-    // Load existing details if they exist
-    currentBook = { title, author, bookId };
     loadBookDetails(bookId);
 
-    // Attach the event listener after the modal content is generated
+    // Attach event listeners
     const saveButton = document.getElementById('saveButtonID');
-    if (saveButton) {
+    const deleteButton = document.getElementById('deleteButtonID');
+    if (saveButton && deleteButton) {
         saveButton.addEventListener('click', () => saveBookDetails(bookId));
+        deleteButton.addEventListener('click', () => deleteBook(bookId));
     } else {
-        console.error("Save button not found in the modal.");
+        console.error("Buttons not found in the modal.");
     }
 
     document.getElementById('bookDetailModal').style.display = 'block';
 }
+
 
 
 
