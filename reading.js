@@ -241,8 +241,10 @@ function openDetailModal(title, author, bookId) {
     
         <h4>Notes:</h4>
         <textarea id="bookNotes" rows="4" cols="50"></textarea>
-        <button id="saveButtonID">Save</button>
-        <button id="deleteButtonID">Delete</button>
+        <div id="saveDel">
+            <i class="fas fa-save" id="saveButtonID"></i>
+            <i class="fa-solid fa-trash-can" id="deleteButtonID"></i>
+        </div>
     `;
     currentBook = { title, author }; // Update currentBook
 

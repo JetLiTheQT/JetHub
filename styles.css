@@ -306,5 +306,9 @@ body {
 }
 
 .fa-star.checked {
-    color: yellow;
+    color: rgb(239, 239, 83);
+}
+#saveDel{
+    display:flex;
+    justify-content: space-between;
 }
