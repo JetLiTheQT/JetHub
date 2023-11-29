@@ -165,11 +165,16 @@ async function saveBookDetails(bookId) {
 
     const bookData = { title, author, notes, rating, finished };
 
+
     try {
         await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
         console.log("Book details saved");
+        document.getElementById('saveConfirmation').textContent = 'Book saved'; // Show confirmation
+        setTimeout(() => document.getElementById('saveConfirmation').textContent = '', 3000); // Clear message after 3 seconds
     } catch (error) {
         console.error("Error saving book details: ", error);
+        document.getElementById('saveConfirmation').textContent = 'Error saving book'; // Show error message
+        setTimeout(() => document.getElementById('saveConfirmation').textContent = '', 3000); // Clear message after 3 seconds
     }
 }
 function getRatingValue() {
@@ -201,22 +206,26 @@ async function loadBookDetails(bookId) {
 }
 
 async function deleteBook(bookId) {
-    try {
-        await deleteDoc(doc(db, 'books', bookId));
-        console.log("Book deleted");
+    const confirmDelete = window.confirm("Are you sure you want to delete this book?");
+    if (confirmDelete) {
+        try {
+            await deleteDoc(doc(db, 'books', bookId));
+            console.log("Book deleted");
 
-        // Remove the book card from the UI
-        const bookCard = document.querySelector(`[data-book-id="${bookId}"]`);
-        if (bookCard) {
-            bookCard.remove();
+            // Remove the book card from the UI
+            const bookCard = document.querySelector(`[data-book-id="${bookId}"]`);
+            if (bookCard) {
+                bookCard.remove();
+            }
+
+            // Close the modal
+            closeDetailModal();
+        } catch (error) {
+            console.error("Error deleting book: ", error);
         }
-
-        // Close the modal
-        closeDetailModal();
-    } catch (error) {
-        console.error("Error deleting book: ", error);
     }
 }
+
 
 
 function openDetailModal(title, author, bookId) {
