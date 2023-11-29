@@ -45,30 +45,27 @@ function fetchAndDisplayQuote() {
     });
 }
 document.getElementById('settingsButton').addEventListener('click', () => {
-    const settingsModal = document.getElementById('settingsModal');
-    settingsModal.style.display = 'block';
-    window.addEventListener('click', handleClickOutsideModal);
+    document.getElementById('settingsModal').style.display = 'block';
 });
 
-function closeSettingsModal() {
-    const settingsModal = document.getElementById('settingsModal');
-    settingsModal.style.display = 'none';
-    window.removeEventListener('click', handleClickOutsideModal);
+window.closeSettingsModal = function() {
+    document.getElementById('settingsModal').style.display = 'none';
 }
 
-function changeBackground() {
+window.changeBackground = function() {
     const selectedBackground = document.getElementById('backgroundSelector').value;
     document.body.style.backgroundImage = `url('${selectedBackground}')`;
     localStorage.setItem('backgroundImage', selectedBackground);
 }
 
-function handleClickOutsideModal(event) {
-    const modalContent = document.getElementById('modalContent');
-    if (modalContent && !modalContent.contains(event.target)) {
+
+// Close modal if clicking outside of it
+window.addEventListener('click', (e) => {
+
+    if (e.target === settingsModal){
         closeSettingsModal();
     }
-}
-
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const savedBackground = localStorage.getItem('backgroundImage');
