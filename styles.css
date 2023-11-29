@@ -318,6 +318,7 @@ body {
 .background-options {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px; /* Adjust the gap as needed */
 }
 
@@ -327,7 +328,6 @@ body {
     border: 2px solid #ccc; /* Add a border for separation (optional) */
     cursor: pointer;
     transition: border 0.3s; /* Add a transition effect (optional) */
-    justify-content: center;
 }
 
 .background-option:hover {
