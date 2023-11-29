@@ -319,4 +319,7 @@ window.addEventListener('click', (e) => {
     if (e.target === modal2) {
         closeDetailModal();
     }
+    if (e.target === settingsModal){
+        closeSettingsModal();
+    }
 });

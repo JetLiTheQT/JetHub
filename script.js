@@ -58,7 +58,16 @@ function changeBackground() {
     document.body.style.backgroundImage = `url('${selectedBackground}')`;
     localStorage.setItem('backgroundImage', selectedBackground);
 }
+function handleClickOutsideModal(event) {
+    const modalContent = document.getElementById('modalContent');
+    // Check if the click is outside the modal content
+    if (!modalContent.contains(event.target)) {
+        closeModal();
+    }
+}
 
+// Add event listener to the window/document
+window.addEventListener('click', handleClickOutsideModal);
 document.addEventListener('DOMContentLoaded', () => {
     const savedBackground = localStorage.getItem('backgroundImage');
     if (savedBackground) {
