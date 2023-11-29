@@ -184,14 +184,22 @@ async function loadBookDetails(bookId) {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            // ... existing code ...
+            const bookData = docSnap.data();
+            document.getElementById('bookNotes').value = bookData.notes || "";
+            document.getElementById('bookRating').value = bookData.rating || "1";
+            document.getElementById('finishedCheckbox').checked = bookData.finished || false;
         } else {
             console.log("No such book!");
+            // Reset fields in case no data is found
+            document.getElementById('bookNotes').value = "";
+            document.getElementById('bookRating').value = "1";
+            document.getElementById('finishedCheckbox').checked = false;
         }
     } catch (error) {
         console.error("Error loading book details: ", error);
     }
 }
+
 
 
 function openDetailModal(title, author, bookId) {
