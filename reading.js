@@ -291,26 +291,26 @@ function setRating(value) {
     });
 }
 
-
-
-
-// Call the fetchBooksFromDb function when the script runs
-fetchBooksFromDb();
-
 // Place this script at the end of your JavaScript file or within a <script> tag in your HTML
 document.getElementById('settingsButton').addEventListener('click', () => {
     document.getElementById('settingsModal').style.display = 'block';
 });
 
-function closeSettingsModal() {
+window.closeSettingsModal = function() {
     document.getElementById('settingsModal').style.display = 'none';
 }
 
-function changeBackground() {
+window.changeBackground = function() {
     const selectedBackground = document.getElementById('backgroundSelector').value;
     document.body.style.backgroundImage = `url('${selectedBackground}')`;
     localStorage.setItem('backgroundImage', selectedBackground);
 }
+
+
+// Call the fetchBooksFromDb function when the script runs
+fetchBooksFromDb();
+
+
 // Close modal if clicking outside of it
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
