@@ -168,14 +168,9 @@ async function saveBookDetails(bookId) {
     try {
         await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
         console.log("Book details saved");
-        const modalFooter = document.getElementById('modalFooter');
-        modalFooter.style.backgroundColor = 'green'; // Change background color
-        setTimeout(() => modalFooter.style.backgroundColor = '', 3000); // Reset after 3 seconds
+        closeDetailModal();
     } catch (error) {
         console.error("Error saving book details: ", error);
-        modalFooter.style.backgroundColor = 'red'; 
-        setTimeout(() => modalFooter.style.backgroundColor = '', 3000); // Reset after 3 seconds
-
     }
 }
 function getRatingValue() {
