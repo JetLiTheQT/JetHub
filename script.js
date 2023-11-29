@@ -68,13 +68,6 @@ window.addEventListener('click', (e) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const savedBackground = localStorage.getItem('backgroundImage');
-    if (savedBackground) {
-        document.body.style.backgroundImage = `url('${savedBackground}')`;
-        document.body.style.backgroundSize = 'cover'; // Set background size to cover
-    }
-});
 
 
 

@@ -312,13 +312,7 @@ window.changeBackground = function(newBackground) {
 // Call the fetchBooksFromDb function when the script runs
 fetchBooksFromDb();
 
-document.addEventListener('DOMContentLoaded', () => {
-    const savedBackground = localStorage.getItem('backgroundImage');
-    if (savedBackground) {
-        document.body.style.backgroundImage = `url('${savedBackground}')`;
-        document.body.style.backgroundSize = 'cover'; // Set background size to cover
-    }
-});
+
 // Close modal if clicking outside of it
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
