@@ -59,7 +59,7 @@ function changeBackground() {
     localStorage.setItem('backgroundImage', selectedBackground);
 }
 function handleClickOutsideModal(event) {
-    const modalContent = document.getElementById('modalContent');
+    const modalContent = document.getElementById('settingsModal');
     // Check if the click is outside the modal content
     if (!modalContent.contains(event.target)) {
         closeModal();
