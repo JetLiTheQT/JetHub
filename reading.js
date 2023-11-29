@@ -221,11 +221,7 @@ function openDetailModal(title, author, bookId) {
         <button id="saveButtonID">Save</button>
     `;
 
-    // Load existing details if they exist
-    currentBook = { title, author, bookId };
-    loadBookDetails(bookId);
-
-    // Attach the event listener after the modal content is generated
+    // Attach the event listener to the save button
     const saveButton = document.getElementById('saveButtonID');
     if (saveButton) {
         saveButton.addEventListener('click', () => saveBookDetails(bookId));
@@ -233,8 +229,14 @@ function openDetailModal(title, author, bookId) {
         console.error("Save button not found in the modal.");
     }
 
-    document.getElementById('bookDetailModal').style.display = 'block';
+    // Load existing details if they exist
+    currentBook = { title, author, bookId };
+    loadBookDetails(bookId).then(() => {
+        // Display the modal after the data is loaded
+        document.getElementById('bookDetailModal').style.display = 'block';
+    });
 }
+
 
 
 
