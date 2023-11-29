@@ -91,13 +91,19 @@ function setActiveBtn(btn) {
     });
     btn.classList.add("active");
 }
-// Place this script at the end of your JavaScript file or within a <script> tag in your HTML
+
+
+
 document.getElementById('settingsButton').addEventListener('click', () => {
-    document.getElementById('settingsModal').style.display = 'block';
+    const settingsModal = document.getElementById('settingsModal');
+    settingsModal.style.display = 'block';
+    window.addEventListener('click', handleClickOutsideModal);
 });
 
 function closeSettingsModal() {
-    document.getElementById('settingsModal').style.display = 'none';
+    const settingsModal = document.getElementById('settingsModal');
+    settingsModal.style.display = 'none';
+    window.removeEventListener('click', handleClickOutsideModal);
 }
 
 function changeBackground() {
@@ -105,14 +111,13 @@ function changeBackground() {
     document.body.style.backgroundImage = `url('${selectedBackground}')`;
     localStorage.setItem('backgroundImage', selectedBackground);
 }
+
 function handleClickOutsideModal(event) {
-    const modalContent = document.getElementById('settingsModal');
-    // Check if the click is outside the modal content
-    if (!modalContent.contains(event.target)) {
-        closeModal();
+    const modalContent = document.getElementById('modalContent');
+    if (modalContent && !modalContent.contains(event.target)) {
+        closeSettingsModal();
     }
 }
 
-// Add event listener to the window/document
-window.addEventListener('click', handleClickOutsideModal);
+
 displayTime();
