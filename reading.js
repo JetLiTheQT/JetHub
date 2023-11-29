@@ -165,16 +165,17 @@ async function saveBookDetails(bookId) {
 
     const bookData = { title, author, notes, rating, finished };
 
-
     try {
         await setDoc(doc(db, 'books', bookId), bookData, { merge: true });
         console.log("Book details saved");
-        document.getElementById('saveConfirmation').textContent = 'Book saved'; // Show confirmation
-        setTimeout(() => document.getElementById('saveConfirmation').textContent = '', 3000); // Clear message after 3 seconds
+        const modalFooter = document.getElementById('modalFooter');
+        modalFooter.style.backgroundColor = 'green'; // Change background color
+        setTimeout(() => modalFooter.style.backgroundColor = '', 3000); // Reset after 3 seconds
     } catch (error) {
         console.error("Error saving book details: ", error);
-        document.getElementById('saveConfirmation').textContent = 'Error saving book'; // Show error message
-        setTimeout(() => document.getElementById('saveConfirmation').textContent = '', 3000); // Clear message after 3 seconds
+        modalFooter.style.backgroundColor = 'red'; 
+        setTimeout(() => modalFooter.style.backgroundColor = '', 3000); // Reset after 3 seconds
+
     }
 }
 function getRatingValue() {
