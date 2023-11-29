@@ -70,7 +70,5 @@ window.addEventListener('click', (e) => {
 
 
 
-
-
 // Call the function when the page loads
 fetchAndDisplayQuote();
