@@ -186,8 +186,11 @@ async function loadBookDetails(bookId) {
         if (docSnap.exists()) {
             const bookData = docSnap.data();
             document.getElementById('bookNotes').value = bookData.notes || "";
+            console.log("bookNotes:", bookData.notes);
             document.getElementById('bookRating').value = bookData.rating || "1";
+            console.log("bookRating:", bookData.rating);
             document.getElementById('finishedCheckbox').checked = bookData.finished || false;
+            console.log("bookFinished:", bookData.finished);
         } else {
             console.log("No such book!");
             // Reset fields in case no data is found
@@ -221,7 +224,11 @@ function openDetailModal(title, author, bookId) {
         <button id="saveButtonID">Save</button>
     `;
 
-    // Attach the event listener to the save button
+    // Load existing details if they exist
+    currentBook = { title, author, bookId };
+    loadBookDetails(bookId);
+
+    // Attach the event listener after the modal content is generated
     const saveButton = document.getElementById('saveButtonID');
     if (saveButton) {
         saveButton.addEventListener('click', () => saveBookDetails(bookId));
@@ -229,14 +236,8 @@ function openDetailModal(title, author, bookId) {
         console.error("Save button not found in the modal.");
     }
 
-    // Load existing details if they exist
-    currentBook = { title, author, bookId };
-    loadBookDetails(bookId).then(() => {
-        // Display the modal after the data is loaded
-        document.getElementById('bookDetailModal').style.display = 'block';
-    });
+    document.getElementById('bookDetailModal').style.display = 'block';
 }
-
 
 
 
