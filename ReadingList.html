@@ -59,14 +59,18 @@
         <div class="modal-content">
             <span class="close" onclick="closeSettingsModal()">&times;</span>
             <h2>Settings</h2>
-            <div>
-                <label>Select Background:</label>
-                <select id="backgroundSelector">
-                    <option value="background.jpg">Background 1</option>
-                    <option value="background2.jpg">Background 2</option>
-                    <!-- Add more options as needed -->
-                </select>
-                <button onclick="changeBackground()">Apply</button>
+            <div class="background-options">
+                <!-- Background Option 1 -->
+                <div class="background-option" onclick="changeBackground('background.jpg')">
+                    <img src="background.jpg" alt="Background 1">
+                </div>
+                
+                <!-- Background Option 2 -->
+                <div class="background-option" onclick="changeBackground('background2.jpg')">
+                    <img src="background2.jpg" alt="Background 2">
+                </div>
+                
+                <!-- Add more background options as needed -->
             </div>
         </div>
     </div>

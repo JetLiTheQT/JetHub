@@ -52,10 +52,10 @@ window.closeSettingsModal = function() {
     document.getElementById('settingsModal').style.display = 'none';
 }
 
-window.changeBackground = function() {
-    const selectedBackground = document.getElementById('backgroundSelector').value;
-    document.body.style.backgroundImage = `url('${selectedBackground}')`;
-    localStorage.setItem('backgroundImage', selectedBackground);
+window.changeBackground = function(newBackground) {
+    document.body.style.backgroundImage = `url('${newBackground}')`;
+    localStorage.setItem('backgroundImage', newBackground);
+    closeSettingsModal(); // Close the modal after changing the background
 }
 
 
