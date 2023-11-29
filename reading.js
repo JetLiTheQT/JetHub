@@ -180,7 +180,7 @@ function getRatingValue() {
 }
 
 async function loadBookDetails(bookId) {
-    console.log("Loading book details for bookId:", bookId); // Log to check bookId
+    console.log("Loading book details for bookId:", bookId);
 
     try {
         const docRef = doc(db, 'books', bookId);
@@ -189,16 +189,12 @@ async function loadBookDetails(bookId) {
         if (docSnap.exists()) {
             const bookData = docSnap.data();
             document.getElementById('bookNotes').value = bookData.notes || "";
-            console.log("bookNotes:", bookData.notes);
-            document.getElementById('bookRating').value = bookData.rating || "1";
-            console.log("bookRating:", bookData.rating);
+            setRating(bookData.rating || 0); // Call setRating to update stars visually
             document.getElementById('finishedCheckbox').checked = bookData.finished || false;
-            console.log("bookFinished:", bookData.finished);
         } else {
             console.log("No such book!");
-            // Reset fields in case no data is found
             document.getElementById('bookNotes').value = "";
-            document.getElementById('bookRating').value = "1";
+            setRating(0);
             document.getElementById('finishedCheckbox').checked = false;
         }
     } catch (error) {
@@ -282,9 +278,6 @@ function setRating(value) {
             star.classList.add('far');
         }
     });
-
-    // Update the rating value somewhere if needed
-    console.log("Selected Rating:", value);
 }
 
 
