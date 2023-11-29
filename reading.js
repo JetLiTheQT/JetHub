@@ -158,11 +158,9 @@ function addBookToUI(title, author, bookId) {
 let currentBook = {}; 
 
 async function saveBookDetails(bookId) {
-    console.log("Saving book details for bookId:", bookId); // Log to check bookId
-
-    const { title, author } = currentBook;
+    const { title, author } = currentBook; // Make sure these are defined
     const notes = document.getElementById('bookNotes').value;
-    const rating = getRatingValue(); 
+    const rating = getRatingValue();
     const finished = document.getElementById('finishedCheckbox').checked;
 
     const bookData = { title, author, notes, rating, finished };
@@ -189,7 +187,7 @@ async function loadBookDetails(bookId) {
         if (docSnap.exists()) {
             const bookData = docSnap.data();
             document.getElementById('bookNotes').value = bookData.notes || "";
-            setRating(bookData.rating || 0); // Call setRating to update stars visually
+            setRating(bookData.rating || 0); // Visually update the stars based on rating
             document.getElementById('finishedCheckbox').checked = bookData.finished || false;
         } else {
             console.log("No such book!");
@@ -241,6 +239,12 @@ function openDetailModal(title, author, bookId) {
         <button id="saveButtonID">Save</button>
         <button id="deleteButtonID">Delete</button>
     `;
+    currentBook = { title, author }; // Update currentBook
+
+    // Reattach star click event listeners
+    document.querySelectorAll('#starRating .fa-star').forEach(star => {
+        star.addEventListener('click', onStarClick);
+    });
 
     loadBookDetails(bookId);
 
@@ -253,7 +257,7 @@ function openDetailModal(title, author, bookId) {
     } else {
         console.error("Buttons not found in the modal.");
     }
-
+    
     document.getElementById('bookDetailModal').style.display = 'block';
 }
 
