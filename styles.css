@@ -515,11 +515,7 @@ body {
         color: #007bff; /* Change text color on hover */
     }
 
-    /* Ensure settings and logout buttons remain on the right */
-    #settingsButton, #logoutButton {
-        margin-left: auto;
-        order: 2; /* Keeps buttons on the right */
-    }
+
 
     /* Position the hamburger icon on the left */
     .hamburger {
