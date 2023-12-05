@@ -9,6 +9,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100vh; /* Viewport height */
     transition: background-image 0.9s ease-in-out;
 }
 .navigation {
