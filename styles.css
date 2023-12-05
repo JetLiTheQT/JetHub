@@ -421,30 +421,34 @@ body {
 #settingsWord{
     text-align: center;
 }
-
-.login-container {
+.login-body{
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('login.jpg') no-repeat center center fixed;  
+    background-size: cover;
+    height: 100vh; /* Viewport height */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: #f2f2f2; /* Light grey background */
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal alignment */
 }
-
-.login-content {
+.login-container {
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
     padding: 40px;
-    background: white;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* Maximum width */
+    width: 100%; /* Responsive width */
 }
 
 .login-content h1 {
-    color: #333; /* Dark grey color */
-    margin-bottom: 10px;
+    color: #333;
+    margin-bottom: 15px;
 }
 
 .login-content p {
-    color: #666; /* Light grey color */
+    color: #666;
     margin-bottom: 20px;
 }
 
