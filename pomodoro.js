@@ -157,6 +157,17 @@ function preloadBackgroundImages() {
         }
     });
 }
+
+// Call this function when the DOM content has loaded
+document.addEventListener('DOMContentLoaded', preloadBackgroundImages);
+
+// Close modal if clicking outside of it
+window.addEventListener('click', (e) => {
+
+    if (e.target === settingsModal){
+        closeSettingsModal();
+    }
+});
 document.getElementById('logoutButton').addEventListener('click', () => {
     const userWantsToLogout = confirm("Are you sure you want to log out?");
     if (userWantsToLogout) {
@@ -169,17 +180,6 @@ document.getElementById('logoutButton').addEventListener('click', () => {
             });
     }
 });
-// Call this function when the DOM content has loaded
-document.addEventListener('DOMContentLoaded', preloadBackgroundImages);
-
-// Close modal if clicking outside of it
-window.addEventListener('click', (e) => {
-
-    if (e.target === settingsModal){
-        closeSettingsModal();
-    }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     // Create the responsive menu
     const responsiveMenu = document.createElement('div');
