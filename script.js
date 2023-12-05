@@ -39,7 +39,7 @@ auth.onAuthStateChanged((user) => {
         setWelcomeMessage(displayName);
     } else {
         // User is not signed in, redirect to the login page
-        window.location.href = '/login'; // Change the URL to your login page
+        window.location.href = './login.html'; // Change the URL to your login page
     }
 });
 
