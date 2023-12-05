@@ -1,3 +1,5 @@
+import { auth } from './firebaseConfig.js';
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     const savedBackground = localStorage.getItem('backgroundImage');
 //     if (savedBackground) {
