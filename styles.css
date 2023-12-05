@@ -477,7 +477,8 @@ body {
 @media screen and (max-width: 768px) {
     /* Flex properties for navigation, ensuring items are spaced properly */
     body{
-        background-size:contain;
+        background-size: cover; /* Ensure background covers entire area */
+        background-repeat: no-repeat; /* Prevent background from repeating */
     }
     .navigation {
         flex-wrap: wrap; /* Allow items to wrap as needed */
