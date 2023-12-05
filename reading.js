@@ -341,8 +341,15 @@ function preloadBackgroundImages() {
     ];
     
     images.forEach(image => {
-        const img = new Image();
-        img.src = image;
+        // Check if the image is already cached
+        if (!localStorage.getItem(image)) {
+            const img = new Image();
+            img.onload = function() {
+                // Store a flag in local storage when the image is loaded
+                localStorage.setItem(image, true);
+            };
+            img.src = image;
+        }
     });
 }
 
