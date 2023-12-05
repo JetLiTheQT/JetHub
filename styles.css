@@ -476,6 +476,9 @@ body {
 /* Responsive Navigation Styles */
 @media screen and (max-width: 768px) {
     /* Flex properties for navigation, ensuring items are spaced properly */
+    body{
+        background-size:contain;
+    }
     .navigation {
         flex-wrap: wrap; /* Allow items to wrap as needed */
         justify-content: flex-start; /* Align items to the start */
