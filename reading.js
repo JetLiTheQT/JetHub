@@ -326,7 +326,15 @@ window.changeBackground = function(newBackground) {
 
 
 // Call the fetchBooksFromDb function when the script runs
-fetchBooksFromDb();
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in, fetch books
+        fetchBooksFromDb();
+    } else {
+        // User is not signed in, redirect to login page or handle accordingly
+        window.location.href = '/login.html';
+    }
+});
 
 
 document.getElementById('logoutButton').addEventListener('click', () => {
