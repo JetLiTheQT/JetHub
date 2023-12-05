@@ -1,7 +1,3 @@
-// Import Firebase modules using ES6 import statements
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
@@ -12,15 +8,15 @@ const firebaseConfig = {
     appId: "1:723758012207:web:40ea1ea84e9a2f460fb3da"
 };
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 const loginButton = document.getElementById('loginButton');
 
 // Listen for clicks on the login button
 loginButton.addEventListener('click', () => {
-    const provider = new app.auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider)
         .then((result) => {
             // User is signed in, you can handle the success here
