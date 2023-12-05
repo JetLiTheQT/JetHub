@@ -36,20 +36,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 
-// Listen for clicks on the login button
-loginButton.addEventListener('click', () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            const user = result.user;
-            const displayName = user.displayName;
-            setWelcomeMessage(displayName);
-            // Optional: Redirect or perform other actions after successful login
-        })
-        .catch((error) => {
-            console.error('Google Sign-In Error:', error);
-        });
-});
+
 document.getElementById('logoutButton').addEventListener('click', () => {
     const userWantsToLogout = confirm("Are you sure you want to log out?");
     if (userWantsToLogout) {
