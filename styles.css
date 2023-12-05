@@ -468,10 +468,18 @@ body {
     order: 1;
 }
 
+/* Responsive Navigation Styles */
 @media screen and (max-width: 768px) {
-    /* Flex properties for navigation */
+    /* Flex properties for navigation, ensuring items are spaced properly */
     .navigation {
-        justify-content: space-between; /* Aligns items on both ends */
+        flex-wrap: wrap; /* Allow items to wrap as needed */
+        justify-content: flex-start; /* Align items to the start */
+    }
+
+    /* Show Hamburger Icon and move to the left */
+    .hamburger {
+        display: block;
+        order: -1; /* Places the hamburger at the very beginning */
     }
 
     /* Hide regular navigation links */
@@ -479,20 +487,16 @@ body {
         display: none;
     }
 
-    /* Show Hamburger Icon */
-    .hamburger {
-        display: block;
-    }
-
     /* Responsive Navigation Menu */
     .responsive-menu {
-        display: none;
+        display: none; /* Initially hidden */
         position: absolute;
         background-color: #fff;
         top: 60px; /* Adjust based on your header's height */
         left: 0; /* Aligns menu to the left */
         width: 100%; /* Full width */
         text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for better visibility */
     }
 
     .responsive-menu a {

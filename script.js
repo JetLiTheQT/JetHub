@@ -34,23 +34,34 @@ auth.onAuthStateChanged((user) => {
         setWelcomeMessage(displayName);
     }
 });
+document.querySelector('.hamburger').addEventListener('click', function() {
+    const responsiveMenu = document.querySelector('.responsive-menu');
+    if (responsiveMenu.style.display === 'block') {
+        responsiveMenu.style.display = 'none';
+    } else {
+        responsiveMenu.style.display = 'block';
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const responsiveMenu = document.createElement('div');
     responsiveMenu.classList.add('responsive-menu');
+    responsiveMenu.style.display = 'none'; // Set initial display to 'none'
 
     // Clone navigation links to the responsive menu
     document.querySelectorAll('.navigation a').forEach(link => {
         responsiveMenu.appendChild(link.cloneNode(true));
     });
-  
+
     document.body.appendChild(responsiveMenu);
 
     hamburger.addEventListener('click', () => {
+        // Toggle display style between 'block' and 'none'
         responsiveMenu.style.display = responsiveMenu.style.display === 'block' ? 'none' : 'block';
     });
 });
+
 
 
 document.getElementById('logoutButton').addEventListener('click', () => {
