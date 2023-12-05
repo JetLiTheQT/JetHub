@@ -30,8 +30,16 @@ body {
 .navigation a.active {
     color: blue;
 }
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 #settingsButton {
     margin-left: auto; /* Pushes the button to the right */
+}
+#settingsButton:hover {
+    animation: spin 1s ease-in-out;
 }
 
 .welcome {
