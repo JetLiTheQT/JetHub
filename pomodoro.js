@@ -17,7 +17,7 @@ const shortBreakBtn = document.getElementById("short-break-btn");
 const longBreakBtn = document.getElementById("long-break-btn");
 const playPauseBtn = document.getElementById("play-pause-btn");
 const resetBtn = document.getElementById("reset-btn");
-
+let currentMode = 'pomodoro'; 
 let isRunning = false;
 let interval;
 let minutes = 25; //Set default time
@@ -56,6 +56,7 @@ function startStopTimer() {
 pomodoroBtn.addEventListener("click", () => {
     minutes = 25;
     seconds = 0;
+    currentMode = 'pomodoro';
     displayTime();
     setActiveBtn(pomodoroBtn);
 });
@@ -63,6 +64,7 @@ pomodoroBtn.addEventListener("click", () => {
 shortBreakBtn.addEventListener("click", () => {
     minutes = 5;
     seconds = 0;
+    currentMode = 'shortBreak';
     displayTime();
     setActiveBtn(shortBreakBtn);
 });
@@ -70,6 +72,7 @@ shortBreakBtn.addEventListener("click", () => {
 longBreakBtn.addEventListener("click", () => {
     minutes = 10;
     seconds = 0;
+    currentMode = 'longBreak';
     displayTime();
     setActiveBtn(longBreakBtn);
 });
@@ -80,10 +83,23 @@ resetBtn.addEventListener("click", () => {
     if (isRunning) {
         startStopTimer(); // Stop the timer
     }
-    minutes = 25;
+    switch (currentMode) {
+        case 'pomodoro':
+            minutes = 25;
+            break;
+        case 'shortBreak':
+            minutes = 5;
+            break;
+        case 'longBreak':
+            minutes = 10;
+            break;
+        default:
+            minutes = 25; 
+    }
     seconds = 0;
     displayTime();
 });
+
 
 function setActiveBtn(btn) {
     [pomodoroBtn, shortBreakBtn, longBreakBtn].forEach((button) => {
