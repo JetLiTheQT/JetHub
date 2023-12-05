@@ -34,33 +34,32 @@ auth.onAuthStateChanged((user) => {
         setWelcomeMessage(displayName);
     }
 });
-document.querySelector('.hamburger').addEventListener('click', function() {
-    const responsiveMenu = document.querySelector('.responsive-menu');
-    if (responsiveMenu.style.display === 'block') {
-        responsiveMenu.style.display = 'none';
-    } else {
-        responsiveMenu.style.display = 'block';
-    }
-});
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
+    // Create the responsive menu
     const responsiveMenu = document.createElement('div');
     responsiveMenu.classList.add('responsive-menu');
-    responsiveMenu.style.display = 'none'; // Set initial display to 'none'
+    responsiveMenu.style.display = 'none'; // Initially hidden
 
-    // Clone navigation links to the responsive menu
+    // Clone navigation links into the responsive menu
     document.querySelectorAll('.navigation a').forEach(link => {
-        responsiveMenu.appendChild(link.cloneNode(true));
+        const clonedLink = link.cloneNode(true);
+        clonedLink.style.display = 'block'; // Ensure cloned links are displayed as block elements
+        responsiveMenu.appendChild(clonedLink);
     });
 
+    // Append the responsive menu to the body
     document.body.appendChild(responsiveMenu);
 
+    // Event listener for the hamburger icon
+    const hamburger = document.querySelector('.hamburger');
     hamburger.addEventListener('click', () => {
-        // Toggle display style between 'block' and 'none'
+        // Toggle the display of the responsive menu
         responsiveMenu.style.display = responsiveMenu.style.display === 'block' ? 'none' : 'block';
     });
 });
+
 
 
 
