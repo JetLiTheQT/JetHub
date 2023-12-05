@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
     <!-- Firebase JavaScript SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js" type="module"></script>
 </head>
 <body onload="setInitialBackground()">
     <div class="navigation">
@@ -40,7 +40,7 @@
         <p id="quote-text"></p>
         <p id="quote-author"></p>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
     <div class="modal" id="settingsModal">
         <div class="modal-content">
             <span class="close" onclick="closeSettingsModal()">&times;</span>

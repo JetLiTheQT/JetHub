@@ -1,3 +1,8 @@
+// Import Firebase modules using ES6 import statements
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyDrHw4QkFNEnNw2QVsMkVPOg4TtxbeQVwM",
     authDomain: "jethub-7e600.firebaseapp.com",
@@ -6,9 +11,13 @@ const firebaseConfig = {
     messagingSenderId: "723758012207",
     appId: "1:723758012207:web:40ea1ea84e9a2f460fb3da"
 };
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
 
 const loginButton = document.getElementById('loginButton');
 const welcomeDiv = document.getElementById('welcome');
