@@ -27,18 +27,11 @@ function setWelcomeMessage(displayName) {
 
 // script.js
 auth.onAuthStateChanged((user) => {
-    if (user) {
-        // User is signed in, hide the login button and show a welcome message
+    if (!user) {
+        window.location.href = '/login.html';
+    } else {
         const displayName = user.displayName;
         setWelcomeMessage(displayName);
-        if (loginButton) {
-            loginButton.style.display = 'none'; // Hide login button
-        }
-    } else {
-        // User is not signed in, show the login button
-        if (loginButton) {
-            loginButton.style.display = 'block'; // Show login button
-        }
     }
 });
 

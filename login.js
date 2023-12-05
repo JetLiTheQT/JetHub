@@ -8,7 +8,7 @@ loginButton.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
         .then((result) => {
-            window.location.href = '/';
+            window.location.href = '/index.html';
         })
         .catch((error) => {
             console.error('Google Sign-In Error:', error);
