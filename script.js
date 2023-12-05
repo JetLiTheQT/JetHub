@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.navigation a').forEach(link => {
         responsiveMenu.appendChild(link.cloneNode(true));
     });
+    document.querySelectorAll('.navigation i').forEach(link => {
+        responsiveMenu.appendChild(link.cloneNode(true));
+    });
     document.body.appendChild(responsiveMenu);
 
     hamburger.addEventListener('click', () => {
