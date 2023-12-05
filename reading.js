@@ -347,6 +347,29 @@ document.getElementById('logoutButton').addEventListener('click', () => {
             });
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Create the responsive menu
+    const responsiveMenu = document.createElement('div');
+    responsiveMenu.classList.add('responsive-menu');
+    responsiveMenu.style.display = 'none'; // Initially hidden
+
+    // Clone navigation links into the responsive menu
+    document.querySelectorAll('.navigation a').forEach(link => {
+        const clonedLink = link.cloneNode(true);
+        clonedLink.style.display = 'block'; // Ensure cloned links are displayed as block elements
+        responsiveMenu.appendChild(clonedLink);
+    });
+
+    // Append the responsive menu to the body
+    document.body.appendChild(responsiveMenu);
+
+    // Event listener for the hamburger icon
+    const hamburger = document.querySelector('.hamburger');
+    hamburger.addEventListener('click', () => {
+        // Toggle the display of the responsive menu
+        responsiveMenu.style.display = responsiveMenu.style.display === 'block' ? 'none' : 'block';
+    });
+});
 
 // Close modal if clicking outside of it
 window.addEventListener('click', (e) => {

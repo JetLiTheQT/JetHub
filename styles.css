@@ -504,4 +504,38 @@ body {
         padding: 10px 20px;
         border-bottom: 1px solid #ccc; /* Add a separator between links */
     }
+    .welcome {
+        font-size: 30px; /* Smaller font size for welcome message */
+        padding-top: 10%; /* Adjust padding */
+    }
+
+    #quote-container {
+        padding-top: 10px;
+    }
+
+    #quote-text {
+        font-size: 18px; /* Smaller font size for quote text */
+    }
+
+    #quote-author {
+        font-size: 16px; /* Smaller font size for quote author */
+    }
+    .timer-container {
+        top: 20%; /* Adjust position */
+        left: 50%;
+        transform: translate(-50%, -20%);
+    }
+
+    .time {
+        font-size: 6rem; /* Smaller font size for timer */
+    }
+
+    .button-group button {
+        font-size: 12px; /* Smaller font size for buttons */
+        padding: 5px 10px; /* Adjust padding */
+    }
+
+    .controls button {
+        font-size: 30px; /* Smaller size for control icons */
+    }
 }
