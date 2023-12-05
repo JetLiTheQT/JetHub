@@ -1,3 +1,10 @@
+/* Reset default margins and paddings */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Sets the height to the full viewport */
+    overflow: hidden; /* Prevents scrolling */
+}
 body {
     font-family: 'Nunito Sans', sans-serif;    
     padding: 20px;
@@ -9,7 +16,6 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh; /* Viewport height */
     transition: background-image 0.9s ease-in-out;
 }
 .navigation {
