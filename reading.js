@@ -127,14 +127,23 @@ async function addBookToList(title, author) {
 
 
 async function fetchBooksFromDb() {
-    const booksCollection = collection(db, 'books');
-    const querySnapshot = await getDocs(booksCollection);
-    querySnapshot.forEach((doc) => {
-        const bookData = doc.data();
-        const bookId = doc.id; // Capture the Firestore document ID
-        addBookToUI(bookData.title, bookData.author, bookId);
-    });
+    const user = auth.currentUser;
+    if (user) {
+        const booksCollection = collection(db, 'books');
+        const querySnapshot = await getDocs(booksCollection);
+        querySnapshot.forEach((doc) => {
+            const bookData = doc.data();
+            if (bookData.userId === user.uid) { // Check if the book belongs to the current user
+                const bookId = doc.id; // Capture the Firestore document ID
+                addBookToUI(bookData.title, bookData.author, bookId);
+            }
+        });
+    } else {
+        console.log('User is not authenticated.');
+        // Optionally, handle the scenario where there is no authenticated user
+    }
 }
+
 
 
 
