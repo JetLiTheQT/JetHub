@@ -329,7 +329,7 @@ window.changeBackground = function(newBackground) {
         closeSettingsModal();
     }, 250); // The delay should be half of your transition duration
 }
-v
+
 function preloadBackgroundImages() {
     const images = [
         'background.jpg', 
