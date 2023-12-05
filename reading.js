@@ -14,6 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
 // HTML Elements
 const addBookButton = document.querySelector('.add-new');
 const modal = document.getElementById('addBookModal');
@@ -105,16 +106,34 @@ function displayResults(books) {
         searchResults.appendChild(bookElement);
     });
 }
+// async function addBookToList(title, author) {
+//     const bookData = { title, author };
+
+//     try {
+//         const docRef = await addDoc(collection(db, 'books'), bookData);
+//         console.log(`Book added with ID: ${docRef.id}`);
+
+//         addBookToUI(title, author, docRef.id);
+//     } catch (error) {
+//         console.error("Error adding book: ", error);
+//     }
+// }
 async function addBookToList(title, author) {
-    const bookData = { title, author };
+    const user = auth.currentUser;
+    if (user) {
+        const bookData = { title, author, userId: user.uid }; // Include the user's UID
 
-    try {
-        const docRef = await addDoc(collection(db, 'books'), bookData);
-        console.log(`Book added with ID: ${docRef.id}`);
+        try {
+            const docRef = await addDoc(collection(db, 'books'), bookData);
+            console.log(`Book added with ID: ${docRef.id}`);
 
-        addBookToUI(title, author, docRef.id);
-    } catch (error) {
-        console.error("Error adding book: ", error);
+            addBookToUI(title, author, docRef.id);
+        } catch (error) {
+            console.error("Error adding book: ", error);
+        }
+    } else {
+        // Handle the case where the user is not authenticated
+        console.log('User is not authenticated.');
     }
 }
 

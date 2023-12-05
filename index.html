@@ -20,7 +20,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
-
+    <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
 </head>
 <body onload="setInitialBackground()">
     <div class="navigation">
@@ -29,6 +32,9 @@
         <a href="./ReadingList.html">Reading List</a>
         <i class="fas fa-cog" id="settingsButton"></i>
     </div>
+    <!-- Add this button to your landing page -->
+    <button id="loginButton">Log In with Google</button>
+
     <div class="welcome" id="welcome"></div>
     <div id="quote-container">
         <p id="quote-text"></p>
