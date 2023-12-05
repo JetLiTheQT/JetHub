@@ -14,13 +14,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = getFirestore(app);s
 
 const loginButton = document.getElementById('loginButton');
 
 // Listen for clicks on the login button
 loginButton.addEventListener('click', () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new app.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider)
         .then((result) => {
             // User is signed in, you can handle the success here
