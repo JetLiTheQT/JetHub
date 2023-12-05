@@ -157,11 +157,20 @@ window.closeSettingsModal = function() {
 }
 
 window.changeBackground = function(newBackground) {
-    document.body.style.backgroundImage = `url('${newBackground}')`;
-    localStorage.setItem('backgroundImage', newBackground);
-    document.body.style.backgroundSize = 'cover'; // Set background size to cover
-    closeSettingsModal(); // Close the modal after changing the background
-}
+    if (sessionStorage.getItem(newBackground)) {
+        document.body.style.backgroundImage = `url('${newBackground}')`;
+    } else {
+        const img = new Image();
+        img.src = newBackground;
+        img.onload = function() {
+            document.body.style.backgroundImage = `url('${newBackground}')`;
+            sessionStorage.setItem(newBackground, true);
+        };
+    }
+    document.body.style.backgroundSize = 'cover';
+    closeSettingsModal(); 
+};
+
 
 
 // Close modal if clicking outside of it
