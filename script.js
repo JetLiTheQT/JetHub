@@ -1,6 +1,6 @@
 // Import Firebase modules using ES6 import statements
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -61,7 +61,7 @@ auth.onAuthStateChanged((user) => {
 // Listen for clicks on the login button
 loginButton.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
-    auth.signInWithPopup(provider)
+    signInWithPopup(provider)
         .then((result) => {
             const user = result.user;
             const displayName = user.displayName;
