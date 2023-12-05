@@ -57,7 +57,18 @@ loginButton.addEventListener('click', () => {
             console.error('Google Sign-In Error:', error);
         });
 });
-
+document.getElementById('logoutButton').addEventListener('click', () => {
+    const userWantsToLogout = confirm("Are you sure you want to log out?");
+    if (userWantsToLogout) {
+        auth.signOut()
+            .then(() => {
+                window.location.href = '/login.html'; // Redirect to login page after logout
+            })
+            .catch((error) => {
+                console.error('Logout Error:', error);
+            });
+    }
+});
 
 // // Check if a user is already signed in
 // auth.onAuthStateChanged((user) => {

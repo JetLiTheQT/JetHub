@@ -33,6 +33,9 @@ body {
 #settingsButton {
     margin-left: auto; /* Pushes the button to the right */
 }
+#logoutButton{
+    margin-left: auto; /* Pushes the button to the right */
+}
 .welcome {
     text-align: center;
     font-size: 60px;
