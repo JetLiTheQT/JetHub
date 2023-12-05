@@ -465,10 +465,15 @@ body {
     display: none;
     font-size: 30px;
     cursor: pointer;
+    order: 1;
 }
 
-/* Responsive Navigation Styles */
 @media screen and (max-width: 768px) {
+    /* Flex properties for navigation */
+    .navigation {
+        justify-content: space-between; /* Aligns items on both ends */
+    }
+
     /* Hide regular navigation links */
     .navigation a {
         display: none;
@@ -477,7 +482,6 @@ body {
     /* Show Hamburger Icon */
     .hamburger {
         display: block;
-        margin-left: auto;
     }
 
     /* Responsive Navigation Menu */
@@ -486,7 +490,7 @@ body {
         position: absolute;
         background-color: #fff;
         top: 60px; /* Adjust based on your header's height */
-        right: 0;
+        left: 0; /* Aligns menu to the left */
         width: 100%; /* Full width */
         text-align: center;
     }
