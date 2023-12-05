@@ -120,11 +120,19 @@ window.closeSettingsModal = function() {
 
 
 window.changeBackground = function(newBackground) {
-    document.body.style.backgroundImage = `url('${newBackground}')`;
-    localStorage.setItem('backgroundImage', newBackground);
-    document.body.style.backgroundSize = 'cover'; // Set background size to cover
-    closeSettingsModal(); // Close the modal after changing the background
+    // Fade out the current background
+    document.body.style.opacity = 0;
+
+    // After a short delay, change the background and fade it in
+    setTimeout(() => {
+        document.body.style.backgroundImage = `url('${newBackground}')`;
+        localStorage.setItem('backgroundImage', newBackground);
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.opacity = 1;
+        closeSettingsModal();
+    }, 250); // The delay should be half of your transition duration
 }
+
 function preloadBackgroundImages() {
     const images = [
         'background.jpg', 
