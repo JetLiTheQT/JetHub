@@ -88,6 +88,7 @@ function displayResults(books) {
 
         bookElement.querySelector(".add-to-list-button").addEventListener('click', () => {
             addBookToList(book.title, book.author_name ? book.author_name[0] : 'Unknown Author');
+            closeModal();
         });
 
         searchResults.appendChild(bookElement);
