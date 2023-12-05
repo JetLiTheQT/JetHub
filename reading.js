@@ -31,8 +31,13 @@ function closeModal() {
 }
 
 function closeDetailModal() {
+    if (isEditing && !confirm("You have unsaved changes. Are you sure you want to close?")) {
+        return; // Do not close the modal if the user chooses to cancel
+    }
     modal2.style.display = 'none';
+    isEditing = false; // Reset the flag
 }
+
 // Fetch Books when typing
 bookSearchInput.addEventListener('input', (e) => {
     if (e.target.value.length >= 3) {
@@ -172,6 +177,18 @@ function addBookToUI(title, author, bookId) {
 
 
 let currentBook = {}; 
+let isEditing = false;
+
+function markAsEditing() {
+    isEditing = true;
+}
+
+// Attach the markAsEditing function to input fields
+document.getElementById('bookNotes').addEventListener('input', markAsEditing);
+document.querySelectorAll('#starRating .fa-star').forEach(star => {
+    star.addEventListener('click', markAsEditing);
+});
+document.getElementById('finishedCheckbox').addEventListener('change', markAsEditing);
 
 async function saveBookDetails(bookId) {
     const { title, author } = currentBook; // Make sure these are defined
@@ -188,6 +205,7 @@ async function saveBookDetails(bookId) {
     } catch (error) {
         console.error("Error saving book details: ", error);
     }
+    isEditing = false; // Reset the flag after saving
 }
 function getRatingValue() {
     const checkedStars = document.querySelectorAll('#starRating .fa-star.checked').length;
