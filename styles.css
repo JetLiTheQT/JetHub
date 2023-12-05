@@ -514,6 +514,18 @@ body {
         background-color: #f8f8f8; /* Light grey background on hover */
         color: #007bff; /* Change text color on hover */
     }
+
+    /* Ensure settings and logout buttons remain on the right */
+    #settingsButton, #logoutButton {
+        margin-left: auto;
+        order: 2; /* Keeps buttons on the right */
+    }
+
+    /* Position the hamburger icon on the left */
+    .hamburger {
+        order: -1; /* Places the hamburger at the very beginning */
+        margin-right: auto; /* Pushes the hamburger to the left */
+    }
     .welcome {
         font-size: 30px; /* Smaller font size for welcome message */
         padding-top: 10%; /* Adjust padding */
