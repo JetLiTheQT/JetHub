@@ -46,16 +46,18 @@ auth.onAuthStateChanged((user) => {
 // Listen for clicks on the login button
 loginButton.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(provider)
+    signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
             const displayName = user.displayName;
             setWelcomeMessage(displayName);
+            // Optional: Redirect or perform other actions after successful login
         })
         .catch((error) => {
             console.error('Google Sign-In Error:', error);
         });
 });
+
 
 // // Check if a user is already signed in
 // auth.onAuthStateChanged((user) => {
