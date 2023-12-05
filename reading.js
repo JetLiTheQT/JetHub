@@ -326,8 +326,14 @@ window.changeBackground = function(newBackground) {
 
 
 // Call the fetchBooksFromDb function when the script runs
-fetchBooksFromDb();
-
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        fetchBooksFromDb(); // Fetch books only when user is authenticated
+    } else {
+        console.log('User is not authenticated.');
+        // Handle unauthenticated scenario
+    }
+});
 
 document.getElementById('logoutButton').addEventListener('click', () => {
     const userWantsToLogout = confirm("Are you sure you want to log out?");
