@@ -317,19 +317,30 @@ window.closeSettingsModal = function() {
 }
 
 window.changeBackground = function(newBackground) {
-    if (sessionStorage.getItem(newBackground)) {
-        document.body.style.backgroundImage = `url('${newBackground}')`;
-    } else {
+    document.body.style.backgroundImage = `url('${newBackground}')`;
+    localStorage.setItem('backgroundImage', newBackground);
+    document.body.style.backgroundSize = 'cover'; // Set background size to cover
+    closeSettingsModal(); // Close the modal after changing the background
+}
+
+function preloadBackgroundImages() {
+    const images = [
+        'background.jpg', 
+        'background2.jpg', 
+        'background3.jpg',
+        'background4.jpg', 
+        'background5.jpg', 
+        'background6.jpg'
+    ];
+    
+    images.forEach(image => {
         const img = new Image();
-        img.src = newBackground;
-        img.onload = function() {
-            document.body.style.backgroundImage = `url('${newBackground}')`;
-            sessionStorage.setItem(newBackground, true);
-        };
-    }
-    document.body.style.backgroundSize = 'cover';
-    closeSettingsModal(); 
-};
+        img.src = image;
+    });
+}
+
+// Call this function when the DOM content has loaded
+document.addEventListener('DOMContentLoaded', preloadBackgroundImages);
 
 
 // Call the fetchBooksFromDb function when the script runs
