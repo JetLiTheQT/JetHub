@@ -40,17 +40,23 @@ function setWelcomeMessage(displayName) {
     type();
 }
 
-// Check if a user is already signed in
+// script.js
 auth.onAuthStateChanged((user) => {
     if (user) {
-        // User is signed in, show a welcome message
+        // User is signed in, hide the login button and show a welcome message
         const displayName = user.displayName;
         setWelcomeMessage(displayName);
+        if (loginButton) {
+            loginButton.style.display = 'none'; // Hide login button
+        }
     } else {
-        // User is not signed in, redirect to the login page
-        window.location.href = './login.html'; // Change the URL to your login page
+        // User is not signed in, show the login button
+        if (loginButton) {
+            loginButton.style.display = 'block'; // Show login button
+        }
     }
 });
+
 
 // Listen for clicks on the login button
 loginButton.addEventListener('click', () => {
