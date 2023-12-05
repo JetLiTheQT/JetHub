@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!-- Include Firebase SDKs as in your index.html -->
-    <!-- Firebase JavaScript SDK -->
+    <title>Login - JetHub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS stylesheet -->
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
-    <!-- Add your CSS styles and login UI here -->
 </head>
 <body>
-    <h1>Login Page</h1>
-    <button id="loginButton">Log In with Google</button>
-    <!-- Add your UI elements for login here -->
+    <div class="login-container">
+        <div class="login-content">
+            <h1>Welcome to JetHub</h1>
+            <p>Your all-in-one productivity platform</p>
+            <button id="loginButton" class="login-button">Log In with Google</button>
+        </div>
+    </div>
     <script src="firebaseConfig.js" type="module"></script>
-    <script src="login.js" type="module"></script> <!-- Include JavaScript for login logic -->
+    <script src="login.js" type="module"></script>
 </body>
 </html>

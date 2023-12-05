@@ -117,6 +117,17 @@ window.addEventListener('click', (e) => {
         closeSettingsModal();
     }
 });
-
+document.getElementById('logoutButton').addEventListener('click', () => {
+    const userWantsToLogout = confirm("Are you sure you want to log out?");
+    if (userWantsToLogout) {
+        auth.signOut()
+            .then(() => {
+                window.location.href = '/login.html'; // Redirect to login page after logout
+            })
+            .catch((error) => {
+                console.error('Logout Error:', error);
+            });
+    }
+});
 
 displayTime();

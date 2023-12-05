@@ -328,6 +328,19 @@ window.changeBackground = function(newBackground) {
 fetchBooksFromDb();
 
 
+document.getElementById('logoutButton').addEventListener('click', () => {
+    const userWantsToLogout = confirm("Are you sure you want to log out?");
+    if (userWantsToLogout) {
+        auth.signOut()
+            .then(() => {
+                window.location.href = '/login.html'; // Redirect to login page after logout
+            })
+            .catch((error) => {
+                console.error('Logout Error:', error);
+            });
+    }
+});
+
 // Close modal if clicking outside of it
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
