@@ -308,14 +308,71 @@ body {
 #pagination span {
     margin-left: 10px; /* Space before the page number */
 }
-.fa-star {
-    cursor: pointer;
-    color: gray;
+/* Detail modal */
+/* Book Detail Modal Styles */
+#bookDetailModal .modal-content {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #333;
+    max-width: 600px; /* Set a max-width for larger screens */
+    width: 90%; /* Responsive width */
+    margin: 5% auto; /* Centering the modal */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.fa-star.checked {
-    color: rgb(239, 239, 83);
+#bookDetailModal h2, #bookDetailModal h4 {
+    margin-top: 0;
+    color: #007bff; /* Theme color */
 }
+
+#bookDetailModal p {
+    margin-bottom: 15px;
+}
+
+#bookDetailModal label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#bookDetailModal #starRating {
+    margin: 10px 0;
+}
+
+#bookDetailModal .fa-star {
+    color: gray;
+    cursor: pointer;
+}
+
+#bookDetailModal .fa-star.checked {
+    color: gold;
+}
+
+#bookDetailModal #bookNotes {
+    width: 100%; /* Responsive width */
+    height: 100px; /* Fixed height */
+    margin-bottom: 15px;
+}
+
+#bookDetailModal #saveDel {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#bookDetailModal .fa-trash-can, #bookDetailModal .fa-save {
+    cursor: pointer;
+    font-size: 20px;
+    color: #007bff;
+}
+
+#bookDetailModal .fa-trash-can:hover, #bookDetailModal .fa-save:hover {
+    color: #0056b3;
+}
+
+
 #saveDel{
     display:flex;
     justify-content: space-between;
