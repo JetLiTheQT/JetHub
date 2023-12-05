@@ -460,3 +460,40 @@ body {
 .login-button:hover {
     background-color: #357ae8; /* Slightly darker blue */
 }
+
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Responsive Navigation Styles */
+@media screen and (max-width: 768px) {
+    /* Hide regular navigation links */
+    .navigation a {
+        display: none;
+    }
+
+    /* Show Hamburger Icon */
+    .hamburger {
+        display: block;
+        margin-left: auto;
+    }
+
+    /* Responsive Navigation Menu */
+    .responsive-menu {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        top: 60px; /* Adjust based on your header's height */
+        right: 0;
+        width: 100%; /* Full width */
+        text-align: center;
+    }
+
+    .responsive-menu a {
+        display: block;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ccc; /* Add a separator between links */
+    }
+}

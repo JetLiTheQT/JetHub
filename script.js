@@ -35,6 +35,21 @@ auth.onAuthStateChanged((user) => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const responsiveMenu = document.createElement('div');
+    responsiveMenu.classList.add('responsive-menu');
+
+    // Clone navigation links to the responsive menu
+    document.querySelectorAll('.navigation a').forEach(link => {
+        responsiveMenu.appendChild(link.cloneNode(true));
+    });
+    document.body.appendChild(responsiveMenu);
+
+    hamburger.addEventListener('click', () => {
+        responsiveMenu.style.display = responsiveMenu.style.display === 'block' ? 'none' : 'block';
+    });
+});
 
 
 document.getElementById('logoutButton').addEventListener('click', () => {
